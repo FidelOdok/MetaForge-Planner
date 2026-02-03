@@ -1,8 +1,8 @@
-# Forge Vision
+# MetaForge Vision
 
-## What Forge Is
+## What MetaForge Is
 
-Forge is a **local-first control plane** for building real hardware.
+MetaForge is a **local-first control plane** for building real hardware.
 
 It turns human intent into **reviewable, manufacturable artifacts**:
 - Schematics
@@ -12,7 +12,7 @@ It turns human intent into **reviewable, manufacturable artifacts**:
 - Manufacturing files
 - Test plans
 
-Forge is **opinionated about what matters**:
+MetaForge is **opinionated about what matters**:
 - Physics beats prompts
 - Artifacts > chat
 - Diffs > vibes
@@ -21,9 +21,9 @@ Forge is **opinionated about what matters**:
 
 ## Prime Rule
 
-**If it can't be versioned, reviewed, and built — Forge doesn't output it.**
+**If it can't be versioned, reviewed, and built — MetaForge doesn't output it.**
 
-## What Forge Is Not
+## What MetaForge Is Not
 
 - Not an EDA tool replacement (we integrate with KiCad, Altium, etc.)
 - Not a chat interface for hardware design
@@ -33,7 +33,7 @@ Forge is **opinionated about what matters**:
 
 ## Architecture Principles
 
-1. **Control Plane First**: Forge is the orchestrator, not the executor
+1. **Control Plane First**: MetaForge is the orchestrator, not the executor
 2. **Agent-Driven**: Specialist agents for requirements, power, schematic, BOM, DFM
 3. **Tool Adapters**: Clean interfaces to KiCad, SPICE, suppliers, firmware toolchains
 4. **Git-Native**: Everything is versioned, diffed, and reviewable
@@ -41,7 +41,7 @@ Forge is **opinionated about what matters**:
 
 ## Success Criteria
 
-Forge succeeds when:
+MetaForge succeeds when:
 - A hardware engineer can go from PRD → reviewed schematic in minutes
 - Every decision is traceable
 - Every output is inspectable
@@ -63,13 +63,13 @@ Educational drone flight controller:
 - STM32-based
 - Known constraints (power, IO, cost)
 - Real manufacturing target
-- Perfect for demonstrating Forge's value
+- Perfect for demonstrating MetaForge's value
 
 ## Why This Matters
 
 Hardware development is stuck in 1995 tooling.
 
-Forge brings hardware development into the era of:
+MetaForge brings hardware development into the era of:
 - Infrastructure as code
 - Agent-based workflows
 - Continuous integration

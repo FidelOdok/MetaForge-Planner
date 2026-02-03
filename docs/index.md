@@ -4,17 +4,17 @@ title: Home
 ---
 
 <div class="hero">
-  <h1>🔥 Forge</h1>
+  <h1>🔥 MetaForge</h1>
   <p>{{ site.description }}</p>
   <p style="margin-top: 2rem;">
     <a href="{{ site.baseurl }}/quickstart" class="button">Get Started</a>
-    <a href="https://github.com/forge-labs/forge" class="button button-secondary">GitHub</a>
+    <a href="https://github.com/metaforge-labs/forge" class="button button-secondary">GitHub</a>
   </p>
 </div>
 
-## What is Forge?
+## What is MetaForge?
 
-Forge is a **local-first control plane** that turns human intent into reviewable, manufacturable hardware artifacts.
+MetaForge is a **local-first control plane** that turns human intent into reviewable, manufacturable hardware artifacts.
 
 ```bash
 forge setup
@@ -27,7 +27,7 @@ forge run spec
 <div class="grid">
   <div class="card">
     <h3>🎯 Intent-Driven</h3>
-    <p>Write PRDs in natural language. Forge structures requirements and guides implementation.</p>
+    <p>Write PRDs in natural language. MetaForge structures requirements and guides implementation.</p>
   </div>
   <div class="card">
     <h3>🤖 Agent-Powered</h3>
@@ -55,7 +55,7 @@ forge run spec
 
 ```mermaid
 graph TD
-    A[Human Intent<br/>PRD, Constraints] --> B[Forge Gateway<br/>Control Plane]
+    A[Human Intent<br/>PRD, Constraints] --> B[MetaForge Gateway<br/>Control Plane]
     B --> C[Agents]
     C --> D[Tools]
     D --> E[Hardware Artifacts]

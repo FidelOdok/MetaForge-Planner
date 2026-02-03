@@ -10,24 +10,24 @@ interface CheckResult {
 }
 
 export async function doctorCommand() {
-  console.log(chalk.bold.cyan('\n🏥 Forge Doctor\n'));
-  console.log(chalk.gray('Checking Forge environment and dependencies...\n'));
+  console.log(chalk.bold.cyan('\n🏥 MetaForge Doctor\n'));
+  console.log(chalk.gray('Checking MetaForge environment and dependencies...\n'));
 
   const results: CheckResult[] = [];
 
-  // Check 1: Forge workspace
+  // Check 1: MetaForge workspace
   const cwd = process.cwd();
   const forgePath = path.join(cwd, '.forge');
 
   if (fs.existsSync(forgePath)) {
     results.push({
-      name: 'Forge workspace',
+      name: 'MetaForge workspace',
       status: 'ok',
       message: 'Found .forge directory',
     });
   } else {
     results.push({
-      name: 'Forge workspace',
+      name: 'MetaForge workspace',
       status: 'error',
       message: 'Not initialized (run: forge setup)',
     });

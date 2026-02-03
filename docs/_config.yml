@@ -1,6 +1,6 @@
-title: Forge
+title: MetaForge
 tagline: From intent to hardware
-description: A control plane for building real hardware
+description: The control plane for building real hardware
 
 url: "http://localhost:4000"
 baseurl: ""

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   docs:
     build: .
-    container_name: forge-docs
+    container_name: metaforge-docs
     ports:
       - "4000:4000"
       - "35729:35729"

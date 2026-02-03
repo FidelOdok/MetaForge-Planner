@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Architecture
-description: Internal technical documentation for Forge system architecture and data flows
+description: Internal technical documentation for MetaForge system architecture and data flows
 ---
 
-# Forge System Architecture
+# MetaForge System Architecture
 
 > **Internal Technical Documentation**
-> This document describes the internal architecture, component interactions, and data flows within Forge.
+> This document describes the internal architecture, component interactions, and data flows within MetaForge.
 
 ## Overview
 
-Forge is structured as a **control plane** that orchestrates specialist agents and tool adapters to transform human intent into manufacturable hardware artifacts.
+MetaForge is structured as a **control plane** that orchestrates specialist agents and tool adapters to transform human intent into manufacturable hardware artifacts.
 
 ## 1. High-Level System Architecture
 
@@ -19,7 +19,7 @@ Forge is structured as a **control plane** that orchestrates specialist agents a
 graph TB
     subgraph "User Layer"
         A[Human Intent<br/>PRD, Constraints]
-        B[Forge CLI<br/>Command Interface]
+        B[MetaForge CLI<br/>Command Interface]
     end
 
     subgraph "Control Plane"
@@ -87,7 +87,7 @@ graph TB
 
 ## 2. Component Architecture
 
-### 2.1 Forge CLI
+### 2.1 MetaForge CLI
 
 **Purpose**: Primary user interface and command executor
 
@@ -606,7 +606,7 @@ project/
 ├── tests/                      # Test plans
 │   └── bringup.md
 │
-└── .forge/                     # Forge internal state
+└── .forge/                     # MetaForge internal state
     ├── config.json             # Workspace config
     │
     ├── sessions/               # Active & completed sessions
@@ -863,7 +863,7 @@ graph TB
 
 ```mermaid
 mindmap
-    root((Forge<br/>Principles))
+    root((MetaForge<br/>Principles))
         Local-First
             No cloud dependency
             Works offline
@@ -933,7 +933,7 @@ interface AgentStrategy {
 ```mermaid
 graph TB
     subgraph "User Machine"
-        A[Terminal] --> B[Forge CLI]
+        A[Terminal] --> B[MetaForge CLI]
         B <--> C[Gateway Process]
 
         C --> D[.forge/ State]
@@ -1009,7 +1009,7 @@ graph TB
 
 ```mermaid
 timeline
-    title Forge Roadmap
+    title MetaForge Roadmap
     section v0.2
         Gateway HTTP : Requirements Agent : KiCad Read
     section v0.3

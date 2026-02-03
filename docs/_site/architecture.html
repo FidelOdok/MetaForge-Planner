@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture | Forge</title>
+  <meta name="description" content="A control plane for building real hardware">
+
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Mermaid -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#E67E22',
+        primaryTextColor: '#ECF0F1',
+        primaryBorderColor: '#F39C12',
+        lineColor: '#BDC3C7',
+        secondaryColor: '#2C3E50',
+        tertiaryColor: '#1A1A1A',
+        background: '#2C2C2C',
+        mainBkg: '#2C2C2C',
+        secondBkg: '#1A1A1A',
+        textColor: '#ECF0F1'
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="/assets/images/logo.png" alt="Forge">
+        <div>
+          <h1>Forge</h1>
+          <p class="tagline">From intent to hardware</p>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          
+          <li><a href="/">Home</a></li>
+          
+          <li><a href="/quickstart">Quick Start</a></li>
+          
+          <li><a href="/architecture">Architecture</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 id="forge-architecture">Forge Architecture</h1>
+
+<p>Forge is structured as a <strong>control plane</strong> that orchestrates specialist agents and tool adapters.</p>
+
+<h2 id="system-overview">System Overview</h2>
+
+<pre><code class="language-mermaid">graph TB
+    subgraph User
+        A[Human Intent]
+        B[CLI]
+    end
+
+    subgraph Control
+        C[Gateway]
+        D[Sessions]
+        E[Permissions]
+    end
+
+    subgraph Agents
+        F[Requirements]
+        G[Architecture]
+        H[BOM]
+    end
+
+    subgraph Tools
+        I[KiCad]
+        J[SPICE]
+        K[APIs]
+    end
+
+    A --&gt; B
+    B --&gt; C
+    C --&gt; D
+    C --&gt; E
+    D --&gt; F
+    D --&gt; G
+    D --&gt; H
+    F --&gt; I
+    G --&gt; I
+    H --&gt; K
+
+    style C fill:#2C3E50,color:#fff
+    style A fill:#E67E22,color:#fff
+</code></pre>
+
+<h2 id="core-components">Core Components</h2>
+
+<h3 id="1-forge-cli">1. Forge CLI</h3>
+
+<p>Primary user interface.</p>
+
+<p><strong>Commands</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">setup</code> — Initialize workspace</li>
+  <li><code class="language-plaintext highlighter-rouge">onboard</code> — Configure project</li>
+  <li><code class="language-plaintext highlighter-rouge">gateway</code> — Start control plane</li>
+  <li><code class="language-plaintext highlighter-rouge">doctor</code> — Check environment</li>
+  <li><code class="language-plaintext highlighter-rouge">run &lt;skill&gt;</code> — Execute workflows</li>
+  <li><code class="language-plaintext highlighter-rouge">approve</code> — Review changes</li>
+</ul>
+
+<h3 id="2-forge-gateway">2. Forge Gateway</h3>
+
+<p>Control plane and orchestrator.</p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Request] --&gt; B[Gateway]
+    B --&gt; C[Session Manager]
+    B --&gt; D[Agent Router]
+    B --&gt; E[State Store]
+
+    style B fill:#2C3E50,color:#fff
+</code></pre>
+
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+  <li>Session management</li>
+  <li>Agent orchestration</li>
+  <li>Permission enforcement</li>
+  <li>State persistence</li>
+</ul>
+
+<h3 id="3-agent-system">3. Agent System</h3>
+
+<p>Specialist agents for specific tasks.</p>
+
+<pre><code class="language-mermaid">graph LR
+    A[Requirements] --&gt; B[constraints.json]
+    C[Architecture] --&gt; D[architecture.md]
+    E[BOM] --&gt; F[bom.csv]
+
+    style A fill:#3498db,color:#fff
+    style C fill:#3498db,color:#fff
+    style E fill:#3498db,color:#fff
+</code></pre>
+
+<h3 id="4-tool-adapters">4. Tool Adapters</h3>
+
+<p>Clean interfaces to external tools.</p>
+
+<p><strong>Example: KiCad Adapter</strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">KiCadAdapter</span> <span class="p">{</span>
+  <span class="nf">runERC</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ERCResult</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="nf">exportBOM</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">BOMData</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="nf">exportNetlist</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="data-flow">Data Flow</h2>
+
+<h3 id="workflow-generate-requirements">Workflow: “Generate Requirements”</h3>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    User-&gt;&gt;CLI: forge run spec
+    CLI-&gt;&gt;Gateway: Execute
+    Gateway-&gt;&gt;Agent: Run
+    Agent-&gt;&gt;Gateway: Return artifacts
+    Gateway-&gt;&gt;CLI: Show diff
+    CLI-&gt;&gt;User: Request approval
+
+    User-&gt;&gt;CLI: forge approve
+    CLI-&gt;&gt;Gateway: Apply
+    Gateway-&gt;&gt;User: ✅ Done
+</code></pre>
+
+<h2 id="workspace-structure">Workspace Structure</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project/
+  PRD.md
+  constraints.json
+  eda/
+  bom/
+  .forge/
+    config.json
+    sessions/
+    traces/
+</code></pre></div></div>
+
+<h2 id="safety-model">Safety Model</h2>
+
+<pre><code class="language-mermaid">graph TD
+    A[Request] --&gt; B{Permission?}
+    B --&gt;|Read| C[Allow]
+    B --&gt;|Write| D{Approved?}
+    D --&gt;|Yes| C
+    D --&gt;|No| E[Reject]
+
+    style E fill:#e74c3c,color:#fff
+    style C fill:#27ae60,color:#fff
+</code></pre>
+
+<p><strong>Permission Levels</strong>:</p>
+<ol>
+  <li><strong>Read</strong>: Always allowed</li>
+  <li><strong>Propose</strong>: Requires approval</li>
+  <li><strong>Write</strong>: Requires explicit approval</li>
+  <li><strong>Execute</strong>: Requires review</li>
+</ol>
+
+<h2 id="technology-stack">Technology Stack</h2>
+
+<p><strong>v0.1</strong>:</p>
+<ul>
+  <li>TypeScript + Node.js</li>
+  <li>Commander.js (CLI)</li>
+  <li>Express (Gateway)</li>
+  <li>File system (State)</li>
+  <li>Git (VCS)</li>
+</ul>
+
+<h2 id="design-principles">Design Principles</h2>
+
+<ol>
+  <li><strong>Local-first</strong>: Works offline</li>
+  <li><strong>Git-native</strong>: Version control first-class</li>
+  <li><strong>Transparent</strong>: All operations traceable</li>
+  <li><strong>Safe</strong>: No destructive actions without approval</li>
+  <li><strong>Composable</strong>: Skills combine into workflows</li>
+</ol>
+
+<hr />
+
+<p><a href="/">← Home</a> • <a href="/quickstart">Quick Start →</a></p>
+
+  </main>
+
+  <footer>
+    <p>Built with conviction that hardware deserves better tools.</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/forge-labs/forge">GitHub</a> •
+      <a href="/quickstart">Get Started</a> •
+      <a href="/architecture">Architecture</a>
+    </p>
+  </footer>
+</body>
+</html>

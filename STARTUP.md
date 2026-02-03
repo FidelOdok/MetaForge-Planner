@@ -1,8 +1,8 @@
-# Forge — Quick Start Guide
+# MetaForge — Quick Start Guide
 
 ## 🔥 What You Have
 
-Forge v0.1 foundation:
+MetaForge v0.1 foundation:
 - **CLI skeleton** (TypeScript)
 - **Documentation site** (Jekyll + Mermaid)
 - **Brand identity** (Anvil + Fire)
@@ -11,7 +11,7 @@ Forge v0.1 foundation:
 ## 📂 Project Structure
 
 ```
-Forge/
+MetaForge/
 ├── cli/                    # CLI commands (TypeScript)
 │   ├── index.ts           # Main CLI entry
 │   └── commands/          # Command implementations
@@ -97,7 +97,7 @@ Pick ONE to implement first:
 
 ## 📖 Key Documents
 
-- `VISION.md` — What Forge is (and isn't)
+- `VISION.md` — What MetaForge is (and isn't)
 - `README.md` — Front door
 - `docs/architecture.md` — System design
 - `roadmap.md` — Development timeline

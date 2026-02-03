@@ -83,6 +83,6 @@ graph LR
 
 ## What's Next?
 
-- Explore [Examples](https://github.com/forge-labs/forge/tree/main/examples)
+- Explore [Examples](https://github.com/metaforge-labs/forge/tree/main/examples)
 - Read [Architecture]({{ site.baseurl }}/architecture)
 - Start the [Gateway]({{ site.baseurl }}/architecture)

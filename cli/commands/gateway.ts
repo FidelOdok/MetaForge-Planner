@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 export async function gatewayCommand(options: { port: string; detach?: boolean }) {
-  console.log(chalk.bold.cyan('\n🔥 Forge Gateway\n'));
+  console.log(chalk.bold.cyan('\n🔥 MetaForge Gateway\n'));
 
   const port = options.port || '3742';
 

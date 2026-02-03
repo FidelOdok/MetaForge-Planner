@@ -1,4 +1,4 @@
-# Forge Documentation - Jekyll + Mermaid
+# MetaForge Documentation - Jekyll + Mermaid
 FROM ruby:3.2-slim
 
 # Install dependencies

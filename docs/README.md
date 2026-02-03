@@ -1,6 +1,6 @@
-# Forge Documentation
+# MetaForge Documentation
 
-Jekyll-based documentation site with Mermaid diagrams and Forge brand styling.
+Jekyll-based documentation site with Mermaid diagrams and MetaForge brand styling.
 
 ## Running Locally
 
@@ -34,9 +34,9 @@ docs/
     default.html       # Main layout with Mermaid
   assets/
     css/
-      style.css        # Forge brand theme
+      style.css        # MetaForge brand theme
     images/
-      logo.png         # Forge logo
+      logo.png         # MetaForge logo
   index.md             # Homepage
   quickstart.md        # Quick start guide
   architecture.md      # Architecture docs
@@ -44,7 +44,7 @@ docs/
   docker-compose.yml   # Docker Compose setup
 ```
 
-## Forge Brand Colors
+## MetaForge Brand Colors
 
 ```css
 --forge-orange: #E67E22   /* Primary - flame */
@@ -86,7 +86,7 @@ graph TD
 ```
 ````
 
-Mermaid is automatically themed with Forge brand colors.
+Mermaid is automatically themed with MetaForge brand colors.
 
 ## Deployment Options
 
@@ -104,10 +104,10 @@ git subtree push --prefix docs origin gh-pages
 
 ```bash
 # Build from project root
-docker build -t forge-docs:latest docs/
+docker build -t metaforge-docs:latest docs/
 
 # Run
-docker run -p 4000:4000 forge-docs:latest
+docker run -p 4000:4000 metaforge-docs:latest
 ```
 
 ### Netlify/Vercel

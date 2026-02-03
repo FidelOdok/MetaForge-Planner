@@ -1,4 +1,4 @@
-# Forge Roadmap
+# MetaForge Roadmap
 
 ## v0.1 — Foundation (Weeks 1-2) 🔥 IN PROGRESS
 

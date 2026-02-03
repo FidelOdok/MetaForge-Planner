@@ -3,19 +3,19 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export async function setupCommand() {
-  console.log(chalk.bold.cyan('\n🔥 Forge Setup\n'));
+  console.log(chalk.bold.cyan('\n🔥 MetaForge Setup\n'));
 
   const cwd = process.cwd();
   const forgePath = path.join(cwd, '.forge');
 
   // Check if already initialized
   if (fs.existsSync(forgePath)) {
-    console.log(chalk.yellow('⚠️  Forge workspace already initialized'));
+    console.log(chalk.yellow('⚠️  MetaForge workspace already initialized'));
     console.log(chalk.gray(`   Found: ${forgePath}`));
     return;
   }
 
-  console.log(chalk.gray('Creating Forge workspace structure...\n'));
+  console.log(chalk.gray('Creating MetaForge workspace structure...\n'));
 
   // Create .forge directory structure
   const dirs = [
@@ -63,7 +63,7 @@ export async function setupCommand() {
 
   // Create .gitignore for .forge
   const gitignorePath = path.join(forgePath, '.gitignore');
-  const gitignoreContent = `# Forge runtime artifacts
+  const gitignoreContent = `# MetaForge runtime artifacts
 sessions/
 runs/
 traces/
@@ -74,7 +74,7 @@ traces/
 `;
   fs.writeFileSync(gitignorePath, gitignoreContent);
 
-  console.log(chalk.green('\n✅ Forge workspace initialized'));
+  console.log(chalk.green('\n✅ MetaForge workspace initialized'));
   console.log(chalk.gray(`   ${forgePath}`));
   console.log(chalk.cyan('\nNext steps:'));
   console.log(chalk.gray('   1. Run'), chalk.bold('forge onboard'), chalk.gray('to set up your project'));

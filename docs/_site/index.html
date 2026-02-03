@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Forge</title>
+  <meta name="description" content="A control plane for building real hardware">
+
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Mermaid -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#E67E22',
+        primaryTextColor: '#ECF0F1',
+        primaryBorderColor: '#F39C12',
+        lineColor: '#BDC3C7',
+        secondaryColor: '#2C3E50',
+        tertiaryColor: '#1A1A1A',
+        background: '#2C2C2C',
+        mainBkg: '#2C2C2C',
+        secondBkg: '#1A1A1A',
+        textColor: '#ECF0F1'
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="/assets/images/logo.png" alt="Forge">
+        <div>
+          <h1>Forge</h1>
+          <p class="tagline">From intent to hardware</p>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          
+          <li><a href="/">Home</a></li>
+          
+          <li><a href="/quickstart">Quick Start</a></li>
+          
+          <li><a href="/architecture">Architecture</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+  <h1>🔥 Forge</h1>
+  <p>A control plane for building real hardware</p>
+  <p style="margin-top: 2rem;">
+    <a href="/quickstart" class="button">Get Started</a>
+    <a href="https://github.com/forge-labs/forge" class="button button-secondary">GitHub</a>
+  </p>
+</div>
+
+<h2 id="what-is-forge">What is Forge?</h2>
+
+<p>Forge is a <strong>local-first control plane</strong> that turns human intent into reviewable, manufacturable hardware artifacts.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>forge setup
+forge onboard
+forge run spec
+</code></pre></div></div>
+
+<h2 id="key-features">Key Features</h2>
+
+<div class="grid">
+  <div class="card">
+    <h3>🎯 Intent-Driven</h3>
+    <p>Write PRDs in natural language. Forge structures requirements and guides implementation.</p>
+  </div>
+  <div class="card">
+    <h3>🤖 Agent-Powered</h3>
+    <p>Specialist agents for requirements, architecture, BOM, and DFM.</p>
+  </div>
+  <div class="card">
+    <h3>🔧 Tool-Integrated</h3>
+    <p>Works with KiCad, SPICE, suppliers, and firmware toolchains.</p>
+  </div>
+  <div class="card">
+    <h3>📝 Git-Native</h3>
+    <p>Everything versioned, diffed, reviewed. PRs for hardware.</p>
+  </div>
+  <div class="card">
+    <h3>🔒 Safe by Default</h3>
+    <p>Read-only first. Explicit approval for writes.</p>
+  </div>
+  <div class="card">
+    <h3>🏠 Local-First</h3>
+    <p>Your data stays on your machine. Works offline.</p>
+  </div>
+</div>
+
+<h2 id="architecture">Architecture</h2>
+
+<pre><code class="language-mermaid">graph TD
+    A[Human Intent&lt;br/&gt;PRD, Constraints] --&gt; B[Forge Gateway&lt;br/&gt;Control Plane]
+    B --&gt; C[Agents]
+    C --&gt; D[Tools]
+    D --&gt; E[Hardware Artifacts]
+
+    style A fill:#E67E22,color:#fff
+    style B fill:#2C3E50,color:#fff
+    style E fill:#27ae60,color:#fff
+</code></pre>
+
+<h2 id="status-v01-in-progress">Status <span class="badge badge-warning">v0.1 In Progress</span></h2>
+
+<p><strong>What works</strong>:</p>
+<ul>
+  <li>✅ CLI skeleton</li>
+  <li>✅ Workspace setup</li>
+  <li>✅ Project onboarding</li>
+</ul>
+
+<p><strong>Coming soon</strong>:</p>
+<ul>
+  <li>⏳ Gateway service</li>
+  <li>⏳ Requirements agent</li>
+  <li>⏳ KiCad adapter</li>
+</ul>
+
+<h2 id="get-started">Get Started</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install
+</span>npm run build
+forge setup
+forge onboard
+</code></pre></div></div>
+
+<p><a href="/quickstart">Read the Quick Start →</a></p>
+
+  </main>
+
+  <footer>
+    <p>Built with conviction that hardware deserves better tools.</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/forge-labs/forge">GitHub</a> •
+      <a href="/quickstart">Get Started</a> •
+      <a href="/architecture">Architecture</a>
+    </p>
+  </footer>
+</body>
+</html>

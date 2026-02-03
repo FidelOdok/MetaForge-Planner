@@ -19,7 +19,7 @@ program
 
 program
   .command('setup')
-  .description('Initialize a Forge workspace')
+  .description('Initialize a MetaForge workspace')
   .action(setupCommand);
 
 program
@@ -29,25 +29,25 @@ program
 
 program
   .command('gateway')
-  .description('Start the Forge gateway service')
+  .description('Start the MetaForge gateway service')
   .option('-p, --port <port>', 'Port to run gateway on', '3742')
   .option('-d, --detach', 'Run in background')
   .action(gatewayCommand);
 
 program
   .command('doctor')
-  .description('Check Forge dependencies and environment')
+  .description('Check MetaForge dependencies and environment')
   .action(doctorCommand);
 
 program
   .command('run <skill>')
-  .description('Execute a Forge skill/workflow')
+  .description('Execute a MetaForge skill/workflow')
   .option('-i, --interactive', 'Run in interactive mode')
   .action(runCommand);
 
 program
   .command('status')
-  .description('Show current Forge state and active sessions')
+  .description('Show current MetaForge state and active sessions')
   .action(statusCommand);
 
 program

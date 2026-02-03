@@ -4,14 +4,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export async function onboardCommand() {
-  console.log(chalk.bold.cyan('\n🚀 Forge Onboarding\n'));
+  console.log(chalk.bold.cyan('\n🚀 MetaForge Onboarding\n'));
 
   const cwd = process.cwd();
   const forgePath = path.join(cwd, '.forge');
 
   // Check if initialized
   if (!fs.existsSync(forgePath)) {
-    console.log(chalk.red('❌ Forge workspace not initialized'));
+    console.log(chalk.red('❌ MetaForge workspace not initialized'));
     console.log(chalk.gray('   Run'), chalk.bold('forge setup'), chalk.gray('first\n'));
     return;
   }

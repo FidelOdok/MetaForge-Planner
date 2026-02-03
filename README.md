@@ -1,8 +1,8 @@
-# Forge
+# MetaForge
 
 **From intent to hardware.**
 
-Forge is a local-first control plane that turns human intent into reviewable, manufacturable hardware artifacts.
+MetaForge is a local-first control plane that turns human intent into reviewable, manufacturable hardware artifacts.
 
 ## Status
 
@@ -11,7 +11,7 @@ Forge is a local-first control plane that turns human intent into reviewable, ma
 ## Quick Start
 
 ```bash
-# Setup Forge
+# Setup MetaForge
 npm install
 npm run build
 
@@ -28,7 +28,7 @@ forge gateway
 forge run spec
 ```
 
-## What Forge Does
+## What MetaForge Does
 
 - Turns PRDs into structured requirements
 - Validates architectures against constraints
@@ -42,11 +42,11 @@ forge run spec
 ```
 Human Intent (PRD, constraints)
          ↓
-Forge Gateway (control plane)
+MetaForge Gateway (control plane)
          ↓
-Forge Agents (specialists)
+MetaForge Agents (specialists)
          ↓
-Forge Tools (KiCad, SPICE, BOM, firmware)
+MetaForge Tools (KiCad, SPICE, BOM, firmware)
          ↓
 Hardware Artifacts (versioned, reviewable)
 ```
@@ -144,11 +144,11 @@ npm run dev
 - [ ] Test plan generation
 - [ ] Reality feedback loop
 
-## Why Forge?
+## Why MetaForge?
 
 Hardware development is stuck with 1995 tooling.
 
-Forge brings:
+MetaForge brings:
 - **Speed**: Minutes instead of days
 - **Quality**: Automated checks catch issues early
 - **Traceability**: Every decision is logged
@@ -161,7 +161,7 @@ MIT
 
 ## Contributing
 
-Forge is early. If you're interested in contributing, start by reading `VISION.md` and `docs/architecture.md`.
+MetaForge is early. If you're interested in contributing, start by reading `VISION.md` and `docs/architecture.md`.
 
 ---
 

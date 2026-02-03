@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  docs:
+    build: .
+    container_name: forge-docs
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/site
+      - bundle-cache:/usr/local/bundle
+    environment:
+      - JEKYLL_ENV=development
+    restart: unless-stopped
+
+volumes:
+  bundle-cache:

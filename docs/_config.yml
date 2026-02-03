@@ -1,0 +1,37 @@
+title: Forge
+tagline: From intent to hardware
+description: A control plane for building real hardware
+
+url: "http://localhost:4000"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Navigation
+nav:
+  - title: Home
+    url: /
+  - title: Quick Start
+    url: /quickstart
+  - title: Architecture
+    url: /architecture
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - Dockerfile
+  - docker-compose.yml
+  - README.md

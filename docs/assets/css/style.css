@@ -1,0 +1,270 @@
+/* Forge Brand Theme - Anvil + Fire */
+:root {
+  --forge-orange: #E67E22;
+  --forge-amber: #F39C12;
+  --forge-dark: #2C3E50;
+  --forge-light: #BDC3C7;
+  --forge-accent: #E74C3C;
+  --forge-bg: #1A1A1A;
+  --forge-bg-light: #2C2C2C;
+  --forge-text: #ECF0F1;
+  --forge-text-muted: #95A5A6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--forge-bg);
+  color: var(--forge-text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: var(--forge-dark);
+  border-bottom: 3px solid var(--forge-orange);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--forge-text);
+}
+
+.logo img {
+  height: 48px;
+  width: auto;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--forge-orange), var(--forge-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: var(--forge-text-muted);
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--forge-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--forge-orange);
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--forge-dark);
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--forge-orange), var(--forge-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  color: var(--forge-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: var(--forge-orange);
+  border-bottom: 2px solid var(--forge-dark);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+h3 {
+  color: var(--forge-amber);
+}
+
+code {
+  background: var(--forge-bg-light);
+  color: var(--forge-orange);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--forge-bg-light);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  border-left: 3px solid var(--forge-orange);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--forge-text);
+}
+
+a {
+  color: var(--forge-amber);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--forge-orange);
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-block;
+  background: var(--forge-orange);
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: var(--forge-amber);
+  text-decoration: none;
+}
+
+.button-secondary {
+  background: var(--forge-dark);
+  border: 2px solid var(--forge-orange);
+}
+
+.card {
+  background: var(--forge-bg-light);
+  border: 1px solid var(--forge-dark);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.mermaid {
+  background: var(--forge-bg-light);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.badge-warning {
+  background: var(--forge-amber);
+  color: var(--forge-bg);
+}
+
+.badge-info {
+  background: #3498db;
+  color: white;
+}
+
+footer {
+  background: var(--forge-dark);
+  border-top: 3px solid var(--forge-orange);
+  padding: 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--forge-text-muted);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: var(--forge-bg-light);
+}
+
+table th {
+  background: var(--forge-dark);
+  color: var(--forge-orange);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--forge-dark);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

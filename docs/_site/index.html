@@ -3,153 +3,694 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Forge</title>
-  <meta name="description" content="A control plane for building real hardware">
+  <title>Home | MetaForge</title>
+  <meta name="description" content="MetaForge - Local-First Control Plane for Hardware Development">
 
-  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/images/logo.png">
   <link rel="stylesheet" href="/assets/css/style.css">
-
-  <!-- Mermaid -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'dark',
-      themeVariables: {
-        primaryColor: '#E67E22',
-        primaryTextColor: '#ECF0F1',
-        primaryBorderColor: '#F39C12',
-        lineColor: '#BDC3C7',
-        secondaryColor: '#2C3E50',
-        tertiaryColor: '#1A1A1A',
-        background: '#2C2C2C',
-        mainBkg: '#2C2C2C',
-        secondBkg: '#1A1A1A',
-        textColor: '#ECF0F1'
-      }
-    });
-  </script>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <a href="/" class="logo">
-        <img src="/assets/images/logo.png" alt="Forge">
-        <div>
-          <h1>Forge</h1>
-          <p class="tagline">From intent to hardware</p>
-        </div>
-      </a>
-      <nav>
-        <ul>
+  <div class="page-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="sidebar-logo">
+          <img src="/assets/images/logo.svg" alt="MetaForge" class="logo-icon">
+          <div class="logo-text">
+            <span class="logo-title">MetaForge</span>
+            <span class="logo-tagline">From intent to hardware</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
           
-          <li><a href="/">Home</a></li>
+          <li class="nav-item active">
+            <a href="/" class="nav-link">Home</a>
+            
+          </li>
           
-          <li><a href="/quickstart">Quick Start</a></li>
+          <li class="nav-item ">
+            <a href="/getting-started/" class="nav-link">Getting Started</a>
+            
+            <ul class="nav-sublist">
+              
+              <li class="nav-subitem ">
+                <a href="/getting-started/" class="nav-sublink">Quick Start</a>
+              </li>
+              
+              <li class="nav-subitem ">
+                <a href="/getting-started/installation" class="nav-sublink">Installation</a>
+              </li>
+              
+              <li class="nav-subitem ">
+                <a href="/getting-started/first-project" class="nav-sublink">First Project</a>
+              </li>
+              
+            </ul>
+            
+          </li>
           
-          <li><a href="/architecture">Architecture</a></li>
+          <li class="nav-item ">
+            <a href="/architecture/" class="nav-link">Architecture</a>
+            
+            <ul class="nav-sublist">
+              
+              <li class="nav-subitem ">
+                <a href="/architecture/" class="nav-sublink">System Architecture</a>
+              </li>
+              
+              <li class="nav-subitem ">
+                <a href="/architecture/components" class="nav-sublink">Components</a>
+              </li>
+              
+              <li class="nav-subitem ">
+                <a href="/architecture/permissions" class="nav-sublink">Permissions</a>
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/agents/" class="nav-link">Agents</a>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/tools/" class="nav-link">Tools</a>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/api/" class="nav-link">API Reference</a>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/examples/" class="nav-link">Examples</a>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/contributing/" class="nav-link">Contributing</a>
+            
+          </li>
           
         </ul>
       </nav>
-    </div>
-  </header>
 
-  <main>
-    <div class="hero">
-  <h1>🔥 Forge</h1>
-  <p>A control plane for building real hardware</p>
-  <p style="margin-top: 2rem;">
-    <a href="/quickstart" class="button">Get Started</a>
-    <a href="https://github.com/forge-labs/forge" class="button button-secondary">GitHub</a>
-  </p>
-</div>
+      <div class="sidebar-footer">
+        <a href="https://github.com/metaforge-labs/forge" class="github-link" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </aside>
 
-<h2 id="what-is-forge">What is Forge?</h2>
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="breadcrumbs">
+          Home
+        </div>
+      </header>
 
-<p>Forge is a <strong>local-first control plane</strong> that turns human intent into reviewable, manufacturable hardware artifacts.</p>
+      <main class="content">
+        <h1 class="fs-9" id="metaforge-documentation">MetaForge Documentation</h1>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>forge setup
+<p class="fs-6 fw-300">Official documentation for MetaForge - Local-first control plane that turns human intent into reviewable, manufacturable hardware artifacts</p>
+
+<p><a href="getting-started/" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2">Get Started</a>
+<a href="architecture/" class="btn fs-5 mb-4 mb-md-0">Architecture</a></p>
+
+<hr />
+
+<h2 id="about-metaforge">About MetaForge</h2>
+
+<p>MetaForge is a <strong>local-first control plane</strong> that transforms human intent (PRDs, design constraints) into production-ready hardware artifacts through AI-powered specialist agents and tool integrations.</p>
+
+<h3 id="the-problem-we-solve">The Problem We Solve</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    subgraph Traditional["❌ Traditional Hardware Development"]
+        P1[Write PRD] --&gt; M1[Manual Research]
+        M1 --&gt; M2[Manual Schematic]
+        M2 --&gt; M3[Manual BOM]
+        M3 --&gt; M4[Manual Review]
+        M4 --&gt; M5[Errors Found]
+        M5 --&gt; M1
+    end
+
+    style P1 fill:#ffcdd2
+    style M5 fill:#ffcdd2
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pain Point</th>
+      <th>Impact</th>
+      <th>Who It Hurts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Manual workflows</td>
+      <td>Weeks of work for each iteration</td>
+      <td>Hardware engineers</td>
+    </tr>
+    <tr>
+      <td>Tool fragmentation</td>
+      <td>Context switching between 5+ tools</td>
+      <td>Design teams</td>
+    </tr>
+    <tr>
+      <td>No version control</td>
+      <td>Hard to track design decisions</td>
+      <td>Teams &amp; reviewers</td>
+    </tr>
+    <tr>
+      <td>Late error detection</td>
+      <td>Costly respins ($10K+ per iteration)</td>
+      <td>Companies</td>
+    </tr>
+    <tr>
+      <td>Knowledge loss</td>
+      <td>Tribal knowledge not captured</td>
+      <td>Organizations</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="our-solution">Our Solution</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    subgraph MetaForge["✅ MetaForge Workflow"]
+        I[Write PRD] --&gt; G[MetaForge Gateway]
+        G --&gt; A1[Requirements Agent]
+        G --&gt; A2[Architecture Agent]
+        G --&gt; A3[BOM Agent]
+        G --&gt; A4[DFM Agent]
+        A1 --&gt; O[Review &amp; Approve]
+        A2 --&gt; O
+        A3 --&gt; O
+        A4 --&gt; O
+        O --&gt; H[Hardware Artifacts]
+    end
+
+    style I fill:#c8e6c9
+    style G fill:#bbdefb
+    style H fill:#e1f5fe
+</code></pre>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Value["💰 Value Proposition"]
+        direction LR
+        V1[10x faster&lt;br/&gt;**Minutes vs Days**]
+        V2[Early validation&lt;br/&gt;**Catch errors before fab**]
+        V3[Git-native&lt;br/&gt;**Full traceability**]
+    end
+
+    style V1 fill:#c8e6c9
+    style V2 fill:#e3f2fd
+    style V3 fill:#fff9c4
+</code></pre>
+
+<p><strong>How It Works:</strong></p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant E as 👨‍💻 Engineer
+    participant C as 💻 CLI
+    participant G as 🔥 Gateway
+    participant A as 🤖 Agents
+    participant T as 🔧 Tools
+
+    E-&gt;&gt;C: forge run spec
+    C-&gt;&gt;G: Execute workflow
+    G-&gt;&gt;A: Spawn requirements agent
+    A-&gt;&gt;A: Process PRD
+    A-&gt;&gt;G: Return artifacts
+    G-&gt;&gt;C: Show diff for approval
+    C-&gt;&gt;E: Review changes
+    E-&gt;&gt;C: forge approve
+    C-&gt;&gt;G: Apply changes
+    G-&gt;&gt;T: Generate KiCad files
+    T-&gt;&gt;G: Artifacts created
+    G-&gt;&gt;E: ✅ Hardware ready
+</code></pre>
+
+<hr />
+
+<h2 id="documentation">Documentation</h2>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Docs["📚 MetaForge Documentation"]
+        direction TB
+
+        subgraph START["🚀 Getting Started"]
+            GS[Quick Start]
+            INST[Installation]
+            FIRST[First Project]
+        end
+
+        subgraph ARCH["🏗️ Architecture &amp; Design"]
+            SYS[System Architecture]
+            COMP[Components]
+            DATA[Data Flows]
+        end
+
+        subgraph DEV["💻 Development &amp; API"]
+            AGENTS[Agent System]
+            TOOLS[Tool Adapters]
+            API[API Reference]
+        end
+
+        subgraph EX["📖 Examples &amp; Guides"]
+            EXAMPLES[Example Projects]
+            GUIDES[How-To Guides]
+        end
+    end
+
+    style START fill:#e8f5e9
+    style ARCH fill:#e3f2fd
+    style DEV fill:#fff3e0
+    style EX fill:#fce4ec
+</code></pre>
+
+<h3 id="getting-started">Getting Started</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Document</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="getting-started/">Quick Start</a></td>
+      <td style="text-align: left">Get up and running in 5 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="getting-started/installation">Installation</a></td>
+      <td style="text-align: left">Detailed installation guide</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="getting-started/first-project">First Project</a></td>
+      <td style="text-align: left">Build your first hardware project</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="architecture--design">Architecture &amp; Design</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Document</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="architecture/">System Architecture</a></td>
+      <td style="text-align: left">Complete system design and data flows</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="architecture/components">Components</a></td>
+      <td style="text-align: left">Gateway, agents, and tool adapters</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="architecture/permissions">Permission Model</a></td>
+      <td style="text-align: left">Safety and security architecture</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="development--api">Development &amp; API</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Document</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="agents/">Agent System</a></td>
+      <td style="text-align: left">Building and extending agents</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="tools/">Tool Adapters</a></td>
+      <td style="text-align: left">Integrating external tools</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="api/">API Reference</a></td>
+      <td style="text-align: left">Gateway API specifications</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="examples--guides">Examples &amp; Guides</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Document</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="examples/">Example Projects</a></td>
+      <td style="text-align: left">Complete worked examples</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="contributing/">Contributing</a></td>
+      <td style="text-align: left">How to contribute to MetaForge</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="key-highlights">Key Highlights</h2>
+
+<h3 id="development-phases">Development Phases</h3>
+
+<pre><code class="language-mermaid">gantt
+    title MetaForge Development Roadmap
+    dateFormat YYYY-MM
+    section v0.1
+    CLI &amp; Gateway        :2024-01, 2024-02
+    Requirements Agent   :2024-02, 2024-03
+    section v0.2
+    Architecture Agent   :2024-03, 2024-04
+    Power Budget Agent   :2024-03, 2024-04
+    BOM Agent           :2024-04, 2024-05
+    section v0.3
+    Schematic Agent     :2024-05, 2024-06
+    DFM Agent           :2024-05, 2024-06
+    Firmware Support    :2024-06, 2024-07
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Phase</th>
+      <th>Key Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v0.1 (Current)</td>
+      <td>CLI, Gateway, Requirements Agent, KiCad integration</td>
+    </tr>
+    <tr>
+      <td>v0.2</td>
+      <td>Architecture Agent, Power Budget, BOM with suppliers</td>
+    </tr>
+    <tr>
+      <td>v0.3</td>
+      <td>Schematic Agent, DFM checks, Firmware scaffolding</td>
+    </tr>
+    <tr>
+      <td>v1.0</td>
+      <td>Multi-user, Cloud sync, Advanced agents</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="technology-stack">Technology Stack</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Frontend["🖥️ Frontend"]
+        CLI[TypeScript CLI&lt;br/&gt;Commander.js]
+    end
+
+    subgraph Backend["⚙️ Control Plane"]
+        GW[Node.js Gateway&lt;br/&gt;Express/Fastify]
+    end
+
+    subgraph Agent["🤖 Agent Runtime"]
+        AG[TypeScript Agents&lt;br/&gt;OpenAI/Anthropic]
+    end
+
+    subgraph Data["💾 Data Layer"]
+        FS[File System&lt;br/&gt;JSON/JSONL]
+        GIT[Git&lt;br/&gt;Version Control]
+    end
+
+    subgraph External["🔗 External Tools"]
+        KC[KiCad CLI]
+        SP[SPICE/ngspice]
+        SUP[Supplier APIs&lt;br/&gt;Octopart/Mouser]
+    end
+
+    CLI --&gt; GW
+    GW --&gt; AG
+    AG --&gt; FS
+    AG --&gt; GIT
+    AG --&gt; KC
+    AG --&gt; SP
+    AG --&gt; SUP
+
+    style Frontend fill:#e3f2fd
+    style Backend fill:#fff3e0
+    style Agent fill:#f3e5f5
+    style Data fill:#e8f5e9
+    style External fill:#fce4ec
+</code></pre>
+
+<hr />
+
+<h2 id="core-workflow">Core Workflow</h2>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[Write PRD.md] --&gt; B[forge run spec]
+    B --&gt; C{Requirements&lt;br/&gt;Agent}
+    C --&gt; D[constraints.json]
+
+    D --&gt; E[forge run architecture]
+    E --&gt; F{Architecture&lt;br/&gt;Agent}
+    F --&gt; G[architecture.md&lt;br/&gt;block diagram]
+
+    G --&gt; H[forge run schematic-plan]
+    H --&gt; I{Schematic&lt;br/&gt;Agent}
+    I --&gt; J[KiCad schematic]
+
+    J --&gt; K[forge run bom]
+    K --&gt; L{BOM Agent}
+    L --&gt; M[bom.csv&lt;br/&gt;costing.json]
+
+    M --&gt; N[forge run dfm]
+    N --&gt; O{DFM Agent}
+    O --&gt; P[Manufacturing&lt;br/&gt;outputs]
+
+    style A fill:#E67E22,color:#fff
+    style P fill:#27ae60,color:#fff
+    style C fill:#9b59b6,color:#fff
+    style F fill:#9b59b6,color:#fff
+    style I fill:#9b59b6,color:#fff
+    style L fill:#9b59b6,color:#fff
+    style O fill:#9b59b6,color:#fff
+</code></pre>
+
+<hr />
+
+<h2 id="project-status">Project Status</h2>
+
+<p><strong>Current Phase</strong>: v0.1 - Foundation</p>
+
+<p><strong>What Works</strong>:</p>
+<ul>
+  <li>✅ Project structure defined</li>
+  <li>✅ Architecture documented</li>
+  <li>✅ Vision and principles established</li>
+  <li>⏳ CLI skeleton in progress</li>
+  <li>⏳ Gateway service in development</li>
+</ul>
+
+<p><strong>Coming Next</strong>:</p>
+<ul>
+  <li>🔄 Requirements agent</li>
+  <li>🔄 KiCad adapter (read-only)</li>
+  <li>🔄 Example drone flight controller</li>
+</ul>
+
+<hr />
+
+<h2 id="quick-start">Quick Start</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install dependencies</span>
+npm <span class="nb">install</span>
+
+<span class="c"># Build the project</span>
+npm run build
+
+<span class="c"># Initialize workspace</span>
+forge setup
+
+<span class="c"># Create your first project</span>
 forge onboard
+
+<span class="c"># Start the gateway</span>
+forge gateway
+
+<span class="c"># Run your first workflow</span>
 forge run spec
 </code></pre></div></div>
 
-<h2 id="key-features">Key Features</h2>
+<p><a href="getting-started/">Full Quick Start Guide →</a></p>
 
-<div class="grid">
-  <div class="card">
-    <h3>🎯 Intent-Driven</h3>
-    <p>Write PRDs in natural language. Forge structures requirements and guides implementation.</p>
-  </div>
-  <div class="card">
-    <h3>🤖 Agent-Powered</h3>
-    <p>Specialist agents for requirements, architecture, BOM, and DFM.</p>
-  </div>
-  <div class="card">
-    <h3>🔧 Tool-Integrated</h3>
-    <p>Works with KiCad, SPICE, suppliers, and firmware toolchains.</p>
-  </div>
-  <div class="card">
-    <h3>📝 Git-Native</h3>
-    <p>Everything versioned, diffed, reviewed. PRs for hardware.</p>
-  </div>
-  <div class="card">
-    <h3>🔒 Safe by Default</h3>
-    <p>Read-only first. Explicit approval for writes.</p>
-  </div>
-  <div class="card">
-    <h3>🏠 Local-First</h3>
-    <p>Your data stays on your machine. Works offline.</p>
-  </div>
-</div>
+<hr />
 
-<h2 id="architecture">Architecture</h2>
+<h2 id="design-principles">Design Principles</h2>
 
-<pre><code class="language-mermaid">graph TD
-    A[Human Intent&lt;br/&gt;PRD, Constraints] --&gt; B[Forge Gateway&lt;br/&gt;Control Plane]
-    B --&gt; C[Agents]
-    C --&gt; D[Tools]
-    D --&gt; E[Hardware Artifacts]
-
-    style A fill:#E67E22,color:#fff
-    style B fill:#2C3E50,color:#fff
-    style E fill:#27ae60,color:#fff
+<pre><code class="language-mermaid">mindmap
+    root((MetaForge&lt;br/&gt;Principles))
+        Local-First
+            No cloud dependency
+            Works offline
+            Data sovereignty
+        Git-Native
+            Version all artifacts
+            Diffs for review
+            Commit history
+        Agent-Driven
+            Specialist agents
+            Not god-mode AI
+            Clear responsibilities
+        Safe by Default
+            Read-only first
+            Explicit approval
+            Audit trail
+        Reality Feedback
+            Learn from builds
+            Improve iterations
+            Data-driven design
 </code></pre>
 
-<h2 id="status-v01-in-progress">Status <span class="badge badge-warning">v0.1 In Progress</span></h2>
+<hr />
 
-<p><strong>What works</strong>:</p>
+<h2 id="community">Community</h2>
+
 <ul>
-  <li>✅ CLI skeleton</li>
-  <li>✅ Workspace setup</li>
-  <li>✅ Project onboarding</li>
+  <li><strong>GitHub</strong>: <a href="https://github.com/metaforge-labs/forge">metaforge-labs/forge</a></li>
+  <li><strong>License</strong>: MIT</li>
+  <li><strong>Contributing</strong>: See <a href="contributing/">Contributing Guide</a></li>
 </ul>
 
-<p><strong>Coming soon</strong>:</p>
-<ul>
-  <li>⏳ Gateway service</li>
-  <li>⏳ Requirements agent</li>
-  <li>⏳ KiCad adapter</li>
-</ul>
+<hr />
 
-<h2 id="get-started">Get Started</h2>
+<p><em>MetaForge - Building better hardware, faster</em>
+<em>Status: Early Development (v0.1)</em></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install
-</span>npm run build
-forge setup
-forge onboard
-</code></pre></div></div>
+      </main>
 
-<p><a href="/quickstart">Read the Quick Start →</a></p>
+      <footer class="footer">
+        <p>Built with conviction that hardware deserves better tools.</p>
+        <p class="footer-links">
+          <a href="https://github.com/metaforge-labs/forge">GitHub</a> •
+          <a href="/getting-started/">Get Started</a> •
+          <a href="/architecture/">Architecture</a>
+        </p>
+      </footer>
+    </div>
+  </div>
 
-  </main>
+  <!-- Mermaid JS - Load and Initialize -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+  <script>
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Initializing Mermaid...');
 
-  <footer>
-    <p>Built with conviction that hardware deserves better tools.</p>
-    <p style="margin-top: 1rem;">
-      <a href="https://github.com/forge-labs/forge">GitHub</a> •
-      <a href="/quickstart">Get Started</a> •
-      <a href="/architecture">Architecture</a>
-    </p>
-  </footer>
+      // Convert code blocks with language-mermaid class to mermaid divs
+      const mermaidCodeBlocks = document.querySelectorAll('pre code.language-mermaid');
+      console.log('Found', mermaidCodeBlocks.length, 'mermaid code blocks');
+
+      mermaidCodeBlocks.forEach((codeBlock, index) => {
+        const pre = codeBlock.parentElement;
+        const mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = codeBlock.textContent;
+        pre.replaceWith(mermaidDiv);
+        console.log('Converted code block', index + 1, 'to mermaid div');
+      });
+
+      // Initialize Mermaid with light theme
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        themeVariables: {
+          primaryColor: '#FFE5D9',
+          primaryTextColor: '#2C3E50',
+          primaryBorderColor: '#E67E22',
+          lineColor: '#E67E22',
+          secondaryColor: '#FFF4E6',
+          tertiaryColor: '#FFFFFF',
+          background: '#FFFFFF',
+          mainBkg: '#FFFFFF',
+          secondBkg: '#FFF8F0',
+          textColor: '#2C3E50',
+          nodeBorder: '#E67E22',
+          clusterBkg: '#FFF8F0',
+          clusterBorder: '#F39C12',
+          titleColor: '#E67E22',
+          edgeLabelBackground: '#FFFFFF',
+          fontSize: '16px'
+        },
+        flowchart: {
+          htmlLabels: true,
+          curve: 'basis',
+          useMaxWidth: true
+        },
+        sequence: {
+          useMaxWidth: true
+        },
+        gantt: {
+          useMaxWidth: true
+        }
+      });
+
+      // Render all mermaid diagrams
+      const mermaidDivs = document.querySelectorAll('.mermaid');
+      console.log('Rendering', mermaidDivs.length, 'mermaid diagrams');
+
+      if (mermaidDivs.length > 0) {
+        try {
+          mermaid.run({
+            querySelector: '.mermaid'
+          }).then(() => {
+            console.log('✅ Mermaid diagrams rendered successfully!');
+          }).catch((error) => {
+            console.error('❌ Mermaid rendering error:', error);
+          });
+        } catch (error) {
+          console.error('❌ Mermaid initialization error:', error);
+        }
+      } else {
+        console.log('⚠️ No mermaid diagrams found on this page');
+      }
+    });
+
+    // Mobile menu toggle
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('mobile-open');
+      document.body.classList.toggle('sidebar-open');
+    }
+  </script>
 </body>
 </html>

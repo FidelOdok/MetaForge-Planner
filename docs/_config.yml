@@ -1,6 +1,6 @@
 title: MetaForge
 tagline: From intent to hardware
-description: The control plane for building real hardware
+description: Local-first control plane for hardware development
 
 url: "http://localhost:4000"
 baseurl: ""
@@ -10,19 +10,69 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  auto_ids: true
+  parse_block_html: true
+  hard_wrap: false
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Enable Mermaid diagrams
+mermaid:
+  enabled: true
+
 # Navigation
 nav:
   - title: Home
     url: /
-  - title: Quick Start
-    url: /quickstart
+  - title: Getting Started
+    url: /getting-started/
+    children:
+      - title: Quick Start
+        url: /getting-started/
+      - title: Installation
+        url: /getting-started/installation
+      - title: First Project
+        url: /getting-started/first-project
   - title: Architecture
-    url: /architecture
+    url: /architecture/
+    children:
+      - title: System Architecture
+        url: /architecture/
+      - title: Components
+        url: /architecture/components
+      - title: Permissions
+        url: /architecture/permissions
+  - title: Agents
+    url: /agents/
+  - title: Tools
+    url: /tools/
+  - title: API Reference
+    url: /api/
+  - title: Examples
+    url: /examples/
+  - title: Contributing
+    url: /contributing/
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
 
 # Exclude from processing
 exclude:
@@ -35,3 +85,6 @@ exclude:
   - Dockerfile
   - docker-compose.yml
   - README.md
+  - _site
+  - .git
+  - .gitignore

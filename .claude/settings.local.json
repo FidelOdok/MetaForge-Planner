@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)",
+      "Bash(grep:*)",
+      "Bash(echo:*)",
+      "mcp__github__get_me",
+      "mcp__github__search_repositories",
+      "mcp__github__get_file_contents",
+      "Bash(bundle exec jekyll build:*)",
+      "Bash(cat:*)",
+      "mcp__jlcmcp__search"
+    ]
+  }
+}

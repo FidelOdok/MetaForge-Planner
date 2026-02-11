@@ -29,19 +29,34 @@ bundle exec jekyll serve --livereload
 
 ```
 docs/
-  _config.yml          # Jekyll configuration
-  _layouts/
-    default.html       # Main layout with Mermaid
-  assets/
-    css/
-      style.css        # MetaForge brand theme
-    images/
-      logo.png         # MetaForge logo
-  index.md             # Homepage
-  quickstart.md        # Quick start guide
-  architecture.md      # Architecture docs
-  Dockerfile           # Docker image for docs
-  docker-compose.yml   # Docker Compose setup
+├── index.md                    # Homepage with overview
+├── getting-started/            # Quick start guides
+│   ├── index.md               # Main quick start
+│   ├── installation.md        # (Coming soon)
+│   └── first-project.md       # (Coming soon)
+├── architecture/               # System architecture
+│   └── index.md               # Complete technical docs (20+ diagrams)
+├── agents/                     # Agent development
+│   └── index.md               # Agent system guide
+├── tools/                      # Tool adapters
+│   └── index.md               # Tool integration guide
+├── api/                        # API reference
+│   └── index.md               # REST API docs
+├── examples/                   # Example projects
+│   └── index.md               # Real-world examples
+├── contributing/               # Contribution guide
+│   └── index.md               # How to contribute
+├── _layouts/                   # Jekyll layouts
+│   └── default.html           # Main layout with Mermaid
+├── _sass/                      # Stylesheets
+├── assets/                     # Images, CSS, JS
+│   ├── css/
+│   │   └── style.css          # MetaForge brand theme
+│   └── images/
+│       └── logo.png           # MetaForge logo
+├── _config.yml                 # Jekyll configuration
+├── Dockerfile                  # Docker image for docs
+└── docker-compose.yml          # Docker Compose setup
 ```
 
 ## MetaForge Brand Colors

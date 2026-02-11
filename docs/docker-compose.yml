@@ -5,7 +5,7 @@ services:
     build: .
     container_name: metaforge-docs
     ports:
-      - "4000:4000"
+      - "4050:4000"
       - "35729:35729"
     volumes:
       - .:/site

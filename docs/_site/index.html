@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | MetaForge</title>
-  <meta name="description" content="MetaForge - Local-First Control Plane for Hardware Development">
+  <meta name="description" content="MetaForge - From Design Assistant to Autonomous Hardware Development Platform">
 
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="alternate icon" type="image/png" href="/assets/images/logo.png">
@@ -126,128 +126,873 @@
       </header>
 
       <main class="content">
-        <h1 class="fs-9" id="metaforge-documentation">MetaForge Documentation</h1>
+        <h1 class="fs-9" id="metaforge">MetaForge</h1>
 
-<p class="fs-6 fw-300">Official documentation for MetaForge - Local-first control plane that turns human intent into reviewable, manufacturable hardware artifacts</p>
+<p class="fs-6 fw-300">From Design Assistant to Autonomous Hardware Development Platform</p>
 
 <p><a href="getting-started/" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2">Get Started</a>
-<a href="architecture/" class="btn fs-5 mb-4 mb-md-0">Architecture</a></p>
+<a href="#roadmap" class="btn fs-5 mb-4 mb-md-0">View Roadmap</a></p>
 
 <hr />
 
-<h2 id="about-metaforge">About MetaForge</h2>
+<h2 id="-the-problem-hardware-development-is-fundamentally-broken">🎯 The Problem: Hardware Development is Fundamentally Broken</h2>
 
-<p>MetaForge is a <strong>local-first control plane</strong> that transforms human intent (PRDs, design constraints) into production-ready hardware artifacts through AI-powered specialist agents and tool integrations.</p>
+<h3 id="the-core-issue">The Core Issue</h3>
 
-<h3 id="the-problem-we-solve">The Problem We Solve</h3>
+<p><strong>Hardware engineers waste weeks on manual, error-prone workflows using disconnected 1990s-era tools, resulting in costly respins, lost tribal knowledge, and a 2-5 year learning curve that prevents innovation.</strong></p>
 
-<pre><code class="language-mermaid">flowchart LR
-    subgraph Traditional["❌ Traditional Hardware Development"]
-        P1[Write PRD] --&gt; M1[Manual Research]
-        M1 --&gt; M2[Manual Schematic]
-        M2 --&gt; M3[Manual BOM]
-        M3 --&gt; M4[Manual Review]
-        M4 --&gt; M5[Errors Found]
-        M5 --&gt; M1
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Problem["The Broken Hardware Development Cycle"]
+        direction TB
+        P1[📝 Write PRD] --&gt; M1[🔍 Research Components&lt;br/&gt;2-3 days manual searching]
+        M1 --&gt; M2[📐 Design Schematic&lt;br/&gt;1-2 weeks in KiCad]
+        M2 --&gt; M3[🗺️ Layout PCB&lt;br/&gt;1-2 weeks manual routing]
+        M3 --&gt; M4[📊 Create BOM&lt;br/&gt;4-6 hours Excel + web searches]
+        M4 --&gt; M5[📦 Order PCBs&lt;br/&gt;2-3 weeks fabrication wait]
+        M5 --&gt; M6[🔧 Assembly&lt;br/&gt;Manual soldering, 1-2 days]
+        M6 --&gt; M7[⚡ Power On&lt;br/&gt;Moment of truth...]
+        M7 --&gt; E1{Does it work?}
+        E1 --&gt;|40-60% chance| M8[❌ Errors Found&lt;br/&gt;💸 $10K-50K respin]
+        E1 --&gt;|Only 40% chance| M9[✅ Success]
+        M8 --&gt; M1
     end
 
-    style P1 fill:#ffcdd2
-    style M5 fill:#ffcdd2
+    style M8 fill:#ffcdd2,stroke:#c62828,color:#000
+    style E1 fill:#fff3e0,stroke:#f57c00
+    style Problem fill:#fafafa,stroke:#999
 </code></pre>
+
+<hr />
+
+<h3 id="five-critical-problems">Five Critical Problems</h3>
+
+<h4 id="1-manual-time-consuming-workflows-️"><strong>1. Manual, Time-Consuming Workflows</strong> ⏱️</h4>
+
+<p><strong>The Reality:</strong></p>
+<ul>
+  <li>Engineers spend <strong>40-50 hours per week</strong> on repetitive manual tasks</li>
+  <li><strong>2-3 days</strong> researching and selecting components across multiple supplier websites</li>
+  <li><strong>1-2 weeks</strong> manually routing PCB traces in KiCad</li>
+  <li><strong>4-6 hours</strong> building BOM spreadsheets, checking stock, finding pricing</li>
+  <li><strong>Total cycle time: 6-8 weeks</strong> from idea to first prototype</li>
+</ul>
+
+<p><strong>Why This Happens:</strong></p>
+<ul>
+  <li>No automation between design phases</li>
+  <li>Each step requires different tools and manual data transfer</li>
+  <li>Copy-paste errors between tools (schematic → BOM → ordering)</li>
+  <li>Every project starts from scratch</li>
+</ul>
+
+<p><strong>Impact:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Time to Market Delay
+────────────────────
+Weeks 1-2:  Component research &amp; schematic
+Weeks 3-4:  PCB layout
+Week 5:     BOM creation &amp; ordering
+Weeks 6-8:  Fabrication wait
+Week 9:     Discovery: Design doesn't work ❌
+────────────────────
+Result: 6+ months for working prototype
+        vs. competitors shipping in 3 months
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="2-tool-fragmentation--context-switching-"><strong>2. Tool Fragmentation &amp; Context Switching</strong> 🔀</h4>
+
+<p><strong>Daily Tool Chaos:</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    E[Hardware Engineer] --&gt; T1[KiCad&lt;br/&gt;Schematic design]
+    E --&gt; T2[SPICE&lt;br/&gt;Circuit simulation]
+    E --&gt; T3[Octopart&lt;br/&gt;Component search]
+    E --&gt; T4[Mouser&lt;br/&gt;Check stock]
+    E --&gt; T5[Digi-Key&lt;br/&gt;Compare prices]
+    E --&gt; T6[Excel&lt;br/&gt;BOM management]
+    E --&gt; T7[JLCPCB&lt;br/&gt;PCB ordering]
+    E --&gt; T8[Datasheets&lt;br/&gt;PDF viewers]
+    E --&gt; T9[Calculator&lt;br/&gt;Power budget]
+    E --&gt; T10[GitHub&lt;br/&gt;Version control?]
+    E --&gt; T11[Email&lt;br/&gt;Vendor comms]
+    E --&gt; T12[Slack&lt;br/&gt;Team coordination]
+
+    style E fill:#E67E22,color:#fff
+</code></pre>
+
+<p><strong>The Cost:</strong></p>
+<ul>
+  <li><strong>8-12 context switches per day</strong> between disconnected tools</li>
+  <li>Average <strong>15-20 minutes lost</strong> per context switch (finding windows, re-orienting)</li>
+  <li><strong>2-3 hours daily</strong> wasted on tool overhead vs. actual design work</li>
+  <li><strong>No single source of truth</strong> - data scattered across 10+ applications</li>
+</ul>
+
+<p><strong>Real Example:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Component Selection Process (Traditional)
+──────────────────────────────────────────
+1. Open datasheet PDF (5 min)
+2. Compare 3 MCU options in browser tabs (20 min)
+3. Check stock on Octopart (10 min)
+4. Check pricing on Mouser (10 min)
+5. Check JLCPCB assembly catalog (15 min)
+6. Update Excel BOM (10 min)
+7. Copy specs into KiCad schematic (5 min)
+8. Hope you didn't make a typo ⚠️
+
+Total: 75 minutes for ONE component
+Multiply × 50 components = 62.5 hours
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="3-late-error-detection--expensive-failures-"><strong>3. Late Error Detection = Expensive Failures</strong> 💸</h4>
+
+<p><strong>When Errors Are Found:</strong></p>
+
+<pre><code class="language-mermaid">timeline
+    title Error Detection Timeline (Traditional)
+    section Design Phase
+        Week 1-2 : Requirements gathering
+        Week 3-4 : Schematic design
+                 : ⚠️ Could catch: Logic errors
+                 : Actually caught: Almost nothing
+    section Manufacturing Phase
+        Week 5-7 : PCB fabrication
+                 : 💰 $500-2000 spent
+        Week 8   : Assembly
+                 : 💰 $1000-5000 spent
+    section Testing Phase
+        Week 9   : Power on test
+                 : 🔥 Errors discovered HERE
+                 : 💸 $10,000-50,000 respin cost
+                 : ⏱️ 6-8 week delay
+</code></pre>
+
+<p><strong>Statistics:</strong></p>
+<ul>
+  <li><strong>40-60%</strong> of hardware designs require at least one respin</li>
+  <li><strong>Average respin cost</strong>: $10,000-$50,000</li>
+  <li><strong>Average delay</strong>: 6-8 weeks per respin</li>
+  <li><strong>Root causes</strong>: Issues that could have been caught in simulation</li>
+</ul>
+
+<p><strong>Common Errors (Found Too Late):</strong></p>
+<ol>
+  <li>❌ Wrong footprint selected → Components don’t fit</li>
+  <li>❌ Power supply insufficient → MCU brownouts</li>
+  <li>❌ I2C pullups missing → Sensors don’t communicate</li>
+  <li>❌ Pin conflict → GPIO already used</li>
+  <li>❌ Thermal issues → Voltage regulator overheats</li>
+  <li>❌ EMI problems → Fails FCC testing</li>
+  <li>❌ Component out of stock → 6-month lead time</li>
+</ol>
+
+<p><strong>Financial Impact:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Single Respin Cost Breakdown
+────────────────────────────
+PCB fabrication:     $2,000
+Component costs:     $3,000
+Assembly labor:      $2,000
+Engineering time:    $5,000 (1 week × $5K)
+Opportunity cost:    $10,000 (market delay)
+────────────────────
+Total per respin:    $22,000
+
+With 40% respin rate:
+Expected cost = $22K × 0.4 = $8,800 per project
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="4-lost-knowledge--no-traceability-"><strong>4. Lost Knowledge &amp; No Traceability</strong> 🧠</h4>
+
+<p><strong>The Tribal Knowledge Problem:</strong></p>
+
+<pre><code class="language-mermaid">flowchart LR
+    subgraph Team["Design Team"]
+        E1[Senior Engineer&lt;br/&gt;🧠 10 years experience]
+        E2[Junior Engineer&lt;br/&gt;📚 Learning]
+    end
+
+    E1 --&gt; D1[Makes critical decisions]
+    D1 --&gt; K1[Knowledge stays in head]
+    K1 --&gt; L1[❌ Not documented]
+    L1 --&gt; C1[Engineer leaves]
+    C1 --&gt; L2[💀 Knowledge lost forever]
+
+    E2 --&gt; D2[Asks: Why was this chosen?]
+    D2 --&gt; K2[❓ No one knows]
+    K2 --&gt; R1[🔄 Repeat same mistakes]
+
+    style L2 fill:#ffcdd2,stroke:#c62828
+    style R1 fill:#fff3e0,stroke:#f57c00
+</code></pre>
+
+<p><strong>What Gets Lost:</strong></p>
+<ul>
+  <li>❌ <strong>Why</strong> a component was chosen over alternatives</li>
+  <li>❌ <strong>What</strong> constraints drove the design</li>
+  <li>❌ <strong>Which</strong> vendors are reliable</li>
+  <li>❌ <strong>How</strong> to debug specific issues</li>
+  <li>❌ <strong>When</strong> to use certain design patterns</li>
+</ul>
+
+<p><strong>Real Impact:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Engineer Turnover Scenario
+──────────────────────────
+Year 1: Senior engineer designs product
+        → Makes 50 critical decisions
+        → Documents 5 in comments
+        → Knowledge: 90% in head
+
+Year 2: Senior engineer leaves
+        → New engineer takes over
+        → Finds code, but not reasoning
+        → Redesigns from scratch (6 months)
+        → Repeats same mistakes
+
+Cost: $100K+ in lost productivity
+</code></pre></div></div>
+
+<p><strong>No Git for Hardware:</strong></p>
+<ul>
+  <li>Software: Every change tracked, every decision in commit messages</li>
+  <li>Hardware: Excel files named <code class="language-plaintext highlighter-rouge">BOM_final_v3_FINAL_actually_final.xlsx</code></li>
+  <li>No diff tools for schematics</li>
+  <li>No review process for design changes</li>
+  <li>No rollback when things break</li>
+</ul>
+
+<hr />
+
+<h4 id="5-prohibitive-learning-curve-"><strong>5. Prohibitive Learning Curve</strong> 📚</h4>
+
+<p><strong>Time to Competence:</strong></p>
+
+<pre><code class="language-mermaid">gantt
+    title Learning Timeline for Hardware Engineering
+    dateFormat YYYY-MM
+    section Year 1
+    Basic EE fundamentals        :2024-01, 6M
+    Learn KiCad                  :2024-04, 3M
+    section Year 2
+    PCB design principles        :2024-07, 6M
+    Component selection          :2025-01, 4M
+    section Year 3
+    Power supply design          :2025-05, 3M
+    Signal integrity             :2025-08, 4M
+    section Year 4
+    Advanced layout              :2026-01, 6M
+    DFM for manufacturing        :2026-07, 6M
+    section Year 5
+    Full product development     :2027-01, 12M
+</code></pre>
+
+<p><strong>Skills Required:</strong></p>
+<ol>
+  <li><strong>Electrical Engineering</strong> (2 years)
+    <ul>
+      <li>Circuit analysis, Ohm’s law, Kirchhoff’s laws</li>
+      <li>Analog vs. digital design</li>
+      <li>Power supply design</li>
+      <li>Signal integrity</li>
+    </ul>
+  </li>
+  <li><strong>PCB Design</strong> (1 year)
+    <ul>
+      <li>KiCad/Altium proficiency</li>
+      <li>Layer stackup</li>
+      <li>Impedance matching</li>
+      <li>Routing strategies</li>
+    </ul>
+  </li>
+  <li><strong>Embedded Systems</strong> (1-2 years)
+    <ul>
+      <li>C/C++ programming</li>
+      <li>RTOS concepts</li>
+      <li>Peripheral drivers (I2C, SPI, UART)</li>
+      <li>Debugging (JTAG, oscilloscope)</li>
+    </ul>
+  </li>
+  <li><strong>Manufacturing</strong> (6 months)
+    <ul>
+      <li>DFM principles</li>
+      <li>Assembly processes (SMT, through-hole)</li>
+      <li>Testing strategies</li>
+      <li>Vendor management</li>
+    </ul>
+  </li>
+  <li><strong>Domain Expertise</strong> (1+ years)
+    <ul>
+      <li>Industry-specific (automotive, aerospace, medical)</li>
+      <li>Regulatory compliance (FCC, CE, UL)</li>
+      <li>Certification processes</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Total: 5+ years to senior-level competency</strong></p>
+
+<p><strong>Barrier to Entry:</strong></p>
+<ul>
+  <li>Hobbyists give up after 6 months</li>
+  <li>Startups can’t hire (senior engineers: $150K+)</li>
+  <li>Universities take 4 years (Bachelor’s EE)</li>
+  <li>Self-taught path: 2-3 years of failures</li>
+</ul>
+
+<hr />
+
+<h3 id="quantified-business-impact">Quantified Business Impact</h3>
 
 <table>
   <thead>
     <tr>
-      <th>Pain Point</th>
-      <th>Impact</th>
-      <th>Who It Hurts</th>
+      <th>Metric</th>
+      <th>Traditional Workflow</th>
+      <th>Business Impact</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Manual workflows</td>
-      <td>Weeks of work for each iteration</td>
-      <td>Hardware engineers</td>
+      <td><strong>Time to First Prototype</strong></td>
+      <td>6-8 weeks</td>
+      <td>Miss market windows, competitors ship first</td>
     </tr>
     <tr>
-      <td>Tool fragmentation</td>
-      <td>Context switching between 5+ tools</td>
-      <td>Design teams</td>
+      <td><strong>Respin Rate</strong></td>
+      <td>40-60%</td>
+      <td>$10K-50K per respin × 0.5 = $5K-25K expected cost</td>
     </tr>
     <tr>
-      <td>No version control</td>
-      <td>Hard to track design decisions</td>
-      <td>Teams &amp; reviewers</td>
+      <td><strong>Tool Context Switches</strong></td>
+      <td>8-12 per day</td>
+      <td>2-3 hours wasted daily = 25-40% productivity loss</td>
     </tr>
     <tr>
-      <td>Late error detection</td>
-      <td>Costly respins ($10K+ per iteration)</td>
-      <td>Companies</td>
+      <td><strong>Knowledge Loss</strong></td>
+      <td>90% tribal</td>
+      <td>$100K+ cost per engineer turnover</td>
     </tr>
     <tr>
-      <td>Knowledge loss</td>
-      <td>Tribal knowledge not captured</td>
-      <td>Organizations</td>
+      <td><strong>Learning Curve</strong></td>
+      <td>2-5 years</td>
+      <td>Cannot scale teams, high salary requirements</td>
+    </tr>
+    <tr>
+      <td><strong>Error Detection</strong></td>
+      <td>Week 9 (post-fab)</td>
+      <td>10x more expensive than catching in design phase</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="our-solution">Our Solution</h3>
+<p><strong>Total Cost of Broken Workflow:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Per-Project Economics (Traditional)
+────────────────────────────────────
+Engineering time:        $30,000 (6 weeks × $5K/week)
+Tools &amp; licenses:        $5,000
+Components (prototype):  $2,000
+PCB fabrication:         $2,000
+Expected respin (40%):   $15,000 (0.4 × $37.5K)
+────────────────────────────────────
+Total expected cost:     $54,000
+Time to first success:   12-16 weeks
 
-<pre><code class="language-mermaid">flowchart LR
-    subgraph MetaForge["✅ MetaForge Workflow"]
-        I[Write PRD] --&gt; G[MetaForge Gateway]
-        G --&gt; A1[Requirements Agent]
-        G --&gt; A2[Architecture Agent]
-        G --&gt; A3[BOM Agent]
-        G --&gt; A4[DFM Agent]
-        A1 --&gt; O[Review &amp; Approve]
-        A2 --&gt; O
-        A3 --&gt; O
-        A4 --&gt; O
-        O --&gt; H[Hardware Artifacts]
-    end
+With MetaForge Vision (Phase 3)
+────────────────────────────────
+Platform fee:            $500
+Manufacturing:           $2,000
+Components:              $2,000
+Certification (opt):     $3,000
+Respin risk (5%):        $400
+────────────────────────────────────
+Total expected cost:     $7,900 (85% savings)
+Time to first success:   2-3 weeks (80% faster)
+</code></pre></div></div>
 
-    style I fill:#c8e6c9
-    style G fill:#bbdefb
-    style H fill:#e1f5fe
-</code></pre>
+<hr />
+
+<h3 id="the-root-cause">The Root Cause</h3>
+
+<p><strong>Hardware development hasn’t evolved since the 1990s:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Software (2024)</th>
+      <th>Hardware (2024)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Design Tools</strong></td>
+      <td>VS Code, AI autocomplete</td>
+      <td>KiCad (manual), datasheets</td>
+    </tr>
+    <tr>
+      <td><strong>Version Control</strong></td>
+      <td>Git (universal)</td>
+      <td>Rare (files, not semantics)</td>
+    </tr>
+    <tr>
+      <td><strong>Testing</strong></td>
+      <td>CI/CD, automated</td>
+      <td>Manual, post-fabrication</td>
+    </tr>
+    <tr>
+      <td><strong>Collaboration</strong></td>
+      <td>PRs, code review</td>
+      <td>Email attachments</td>
+    </tr>
+    <tr>
+      <td><strong>Iteration Speed</strong></td>
+      <td>Minutes (hot reload)</td>
+      <td>Weeks (fab wait)</td>
+    </tr>
+    <tr>
+      <td><strong>Error Detection</strong></td>
+      <td>Compile time, linting</td>
+      <td>After $10K spent</td>
+    </tr>
+    <tr>
+      <td><strong>Knowledge Sharing</strong></td>
+      <td>Stack Overflow, docs</td>
+      <td>Tribal, lost on turnover</td>
+    </tr>
+    <tr>
+      <td><strong>Barrier to Entry</strong></td>
+      <td>Months (online courses)</td>
+      <td>Years (degree required)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>The gap has widened:</strong></p>
+<ul>
+  <li>Software engineers ship features in <strong>days</strong></li>
+  <li>Hardware engineers wait <strong>weeks</strong> just to test an idea</li>
+  <li>Software has <strong>CI/CD</strong>, hardware has “cross fingers and hope”</li>
+  <li>Software has <strong>GitHub Copilot</strong>, hardware has “read 500-page datasheets”</li>
+</ul>
+
+<hr />
+
+<h3 id="problem-statement-one-sentence">Problem Statement (One Sentence)</h3>
+
+<blockquote>
+  <p><strong>“Hardware engineers waste 6-8 weeks and $50K+ per product using disconnected 1990s-era tools with no automation, no validation, and no knowledge capture, resulting in 40-60% respin rates and making hardware development 100x slower than software development.”</strong></p>
+</blockquote>
+
+<p>This is the problem <strong>MetaForge</strong> solves.</p>
+
+<hr />
+
+<h2 id="-the-solution-metaforge-evolution">💡 The Solution: MetaForge Evolution</h2>
+
+<p>MetaForge is a <strong>hardware development platform</strong> that evolves from AI-powered design assistant to fully autonomous product development system.</p>
+
+<h3 id="the-three-phase-evolution">The Three-Phase Evolution</h3>
 
 <pre><code class="language-mermaid">flowchart TB
-    subgraph Value["💰 Value Proposition"]
-        direction LR
-        V1[10x faster&lt;br/&gt;**Minutes vs Days**]
-        V2[Early validation&lt;br/&gt;**Catch errors before fab**]
-        V3[Git-native&lt;br/&gt;**Full traceability**]
+    subgraph Phase1["Phase 1: Design Assistant (v0.1-0.3)&lt;br/&gt;👨‍💻 Human-in-the-Loop"]
+        P1A[Human writes PRD]
+        P1B[Agents suggest designs]
+        P1C[Human reviews &amp; approves]
+        P1D[Human uses tools]
+        P1E[Human orders parts]
+
+        P1A --&gt; P1B --&gt; P1C --&gt; P1D --&gt; P1E
     end
 
-    style V1 fill:#c8e6c9
-    style V2 fill:#e3f2fd
-    style V3 fill:#fff9c4
+    subgraph Phase2["Phase 2: Semi-Autonomous (v0.4-0.6)&lt;br/&gt;🤝 Minimal Human Input"]
+        P2A[Human writes PRD]
+        P2B[Agents design &amp; validate]
+        P2C[Human approves milestones]
+        P2D[Agents use tools]
+        P2E[Agents order parts]
+
+        P2A --&gt; P2B --&gt; P2C --&gt; P2D --&gt; P2E
+    end
+
+    subgraph Phase3["Phase 3: Full Autonomous (v0.7-1.0)&lt;br/&gt;🤖 End-to-End Automation"]
+        P3A[Human writes PRD]
+        P3B[Agents handle everything]
+        P3C[Products delivered]
+
+        P3A --&gt; P3B --&gt; P3C
+    end
+
+    Phase1 --&gt; Phase2 --&gt; Phase3
+
+    style Phase1 fill:#e3f2fd,stroke:#1976d2
+    style Phase2 fill:#fff3e0,stroke:#f57c00
+    style Phase3 fill:#e8f5e9,stroke:#388e3c
 </code></pre>
 
-<p><strong>How It Works:</strong></p>
+<hr />
+
+<h2 id="-phase-1-design-assistant-current---v01-03">📍 Phase 1: Design Assistant (Current - v0.1-0.3)</h2>
+<p><strong>Human-in-the-Loop: AI Accelerates, Human Controls</strong></p>
+
+<h3 id="what-metaforge-does">What MetaForge Does</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    H1[👨‍💻 Human] --&gt; A1[📝 Write PRD]
+    A1 --&gt; A2[🤖 Agent: Requirements]
+    A2 --&gt; A3[📊 constraints.json]
+    A3 --&gt; H2[👨‍💻 Review &amp; Approve]
+    H2 --&gt; A4[🤖 Agent: Architecture]
+    A4 --&gt; A5[🔧 Component Selection]
+    A5 --&gt; H3[👨‍💻 Review &amp; Approve]
+    H3 --&gt; A6[🤖 Agent: BOM]
+    A6 --&gt; H4[👨‍💻 Manual: KiCad Layout]
+    H4 --&gt; H5[👨‍💻 Manual: Order from JLCPCB]
+
+    style H1 fill:#E67E22,color:#fff
+    style H2 fill:#E67E22,color:#fff
+    style H3 fill:#E67E22,color:#fff
+    style H4 fill:#E67E22,color:#fff
+    style H5 fill:#E67E22,color:#fff
+    style A2 fill:#9b59b6,color:#fff
+    style A4 fill:#9b59b6,color:#fff
+    style A6 fill:#9b59b6,color:#fff
+</code></pre>
+
+<h3 id="human-responsibilities">Human Responsibilities</h3>
+<ul>
+  <li>✍️ Write PRD</li>
+  <li>✅ Review &amp; approve agent outputs</li>
+  <li>🛠️ PCB layout in KiCad</li>
+  <li>📦 Order parts from vendors</li>
+  <li>🔧 Assembly &amp; testing</li>
+  <li>💻 Write firmware</li>
+</ul>
+
+<h3 id="agent-capabilities">Agent Capabilities</h3>
+<ul>
+  <li>✅ Extract requirements → <code class="language-plaintext highlighter-rouge">constraints.json</code></li>
+  <li>✅ Select components → <code class="language-plaintext highlighter-rouge">architecture.md</code></li>
+  <li>✅ Calculate power budget → <code class="language-plaintext highlighter-rouge">power-budget.json</code></li>
+  <li>✅ Generate BOM → <code class="language-plaintext highlighter-rouge">bom.csv</code> with pricing</li>
+  <li>✅ DFM validation → manufacturability checks</li>
+  <li>✅ Generate test plans → <code class="language-plaintext highlighter-rouge">test-procedures.md</code></li>
+</ul>
+
+<h3 id="time-savings">Time Savings</h3>
+<ul>
+  <li><strong>Traditional</strong>: 6-8 weeks</li>
+  <li><strong>With MetaForge Phase 1</strong>: <strong>2-3 weeks</strong> (60% faster)</li>
+</ul>
+
+<h3 id="cost-savings">Cost Savings</h3>
+<ul>
+  <li>Avoid 40% respin rate through early validation</li>
+  <li>Save $10K-50K per project</li>
+</ul>
+
+<hr />
+
+<h2 id="-phase-2-semi-autonomous-future---v04-06">📍 Phase 2: Semi-Autonomous (Future - v0.4-0.6)</h2>
+<p><strong>Minimal Human Input: Agents Do the Heavy Lifting</strong></p>
+
+<h3 id="what-metaforge-does-1">What MetaForge Does</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    H1[👨‍💻 Human] --&gt; A1[📝 Write PRD]
+    A1 --&gt; A2[🤖 Agents: Full Design]
+    A2 --&gt; A3[🧪 Simulation &amp; Validation]
+    A3 --&gt; H2[👨‍💻 Approve Milestones]
+    H2 --&gt; A4[🤖 Agent: PCB Auto-Route]
+    A4 --&gt; A5[🤖 Agent: Firmware Generation]
+    A5 --&gt; A6[🤖 Agent: Manufacturing Order]
+    A6 --&gt; A7[📦 Parts Delivered]
+    A7 --&gt; H3[👨‍💻 Assembly &amp; Test]
+
+    style H1 fill:#E67E22,color:#fff
+    style H2 fill:#E67E22,color:#fff
+    style H3 fill:#E67E22,color:#fff
+    style A2 fill:#9b59b6,color:#fff
+    style A4 fill:#9b59b6,color:#fff
+    style A5 fill:#9b59b6,color:#fff
+    style A6 fill:#9b59b6,color:#fff
+</code></pre>
+
+<h3 id="human-responsibilities-1">Human Responsibilities</h3>
+<ul>
+  <li>✍️ Write PRD</li>
+  <li>✅ Approve key milestones (3-4 checkpoints)</li>
+  <li>🔧 Final assembly</li>
+  <li>✈️ Flight testing (for drones)</li>
+</ul>
+
+<h3 id="agent-capabilities-1">Agent Capabilities</h3>
+<ul>
+  <li>✅ <strong>Everything from Phase 1</strong></li>
+  <li>🆕 PCB auto-routing (KiCad automation)</li>
+  <li>🆕 Complete firmware generation (90%+ complete)</li>
+  <li>🆕 Mechanical CAD (frame, enclosures)</li>
+  <li>🆕 Virtual prototyping (SPICE, flight sim, thermal)</li>
+  <li>🆕 Automated ordering (JLCPCB, Xometry, etc.)</li>
+  <li>🆕 Test procedure automation</li>
+</ul>
+
+<h3 id="time-savings-1">Time Savings</h3>
+<ul>
+  <li><strong>Traditional</strong>: 6-8 weeks</li>
+  <li><strong>With MetaForge Phase 2</strong>: <strong>1 week</strong> (85% faster)</li>
+</ul>
+
+<h3 id="cost-savings-1">Cost Savings</h3>
+<ul>
+  <li>Eliminate respins through simulation</li>
+  <li>No CAD licenses needed</li>
+  <li>No firmware development time</li>
+</ul>
+
+<hr />
+
+<h2 id="-phase-3-full-autonomous-vision---v07-10">📍 Phase 3: Full Autonomous (Vision - v0.7-1.0)</h2>
+<p><strong>End-to-End Automation: PRD → Delivered Products</strong></p>
+
+<h3 id="what-metaforge-does-2">What MetaForge Does</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    H1[👨‍💻 Human] --&gt; A1[📝 Write PRD + Budget]
+    A1 --&gt; A2[🤖 MetaForge Platform]
+    A2 --&gt; A3[📦 Products Delivered]
+
+    A2 -.-&gt; S1[Design]
+    A2 -.-&gt; S2[Simulate]
+    A2 -.-&gt; S3[Manufacture]
+    A2 -.-&gt; S4[Assemble]
+    A2 -.-&gt; S5[Test]
+    A2 -.-&gt; S6[Certify]
+
+    style H1 fill:#E67E22,color:#fff
+    style A2 fill:#27ae60,color:#fff
+    style A3 fill:#27ae60,color:#fff
+</code></pre>
+
+<h3 id="human-responsibilities-2">Human Responsibilities</h3>
+<ul>
+  <li>✍️ Write PRD</li>
+  <li>💳 Set budget</li>
+  <li>📍 Provide shipping address</li>
+  <li>✅ Approve final design (optional)</li>
+  <li>📦 Receive &amp; use product</li>
+</ul>
+
+<h3 id="metaforge-handles-everything">MetaForge Handles Everything</h3>
+<ul>
+  <li>✅ <strong>Everything from Phase 1 &amp; 2</strong></li>
+  <li>🆕 Autonomous manufacturing ordering</li>
+  <li>🆕 Automated assembly coordination</li>
+  <li>🆕 Remote testing infrastructure</li>
+  <li>🆕 Certification documentation &amp; lab booking</li>
+  <li>🆕 Production scaling</li>
+  <li>🆕 Supply chain management</li>
+  <li>🆕 Quality assurance</li>
+</ul>
+
+<h3 id="user-experience">User Experience</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Single command from PRD to delivered product</span>
+forge create drone-fc <span class="se">\</span>
+  <span class="nt">--prd</span> PRD.md <span class="se">\</span>
+  <span class="nt">--quantity</span> 10 <span class="se">\</span>
+  <span class="nt">--budget</span> 2000 <span class="se">\</span>
+  <span class="nt">--address</span> <span class="s2">"123 Main St, Austin, TX"</span>
+
+<span class="c"># MetaForge does everything</span>
+<span class="c"># 2 weeks later: 10 working flight controllers arrive</span>
+</code></pre></div></div>
+
+<h3 id="time-savings-2">Time Savings</h3>
+<ul>
+  <li><strong>Traditional</strong>: 6 months (including learning)</li>
+  <li><strong>With MetaForge Phase 3</strong>: <strong>2-3 weeks</strong> (90%+ faster)</li>
+</ul>
+
+<h3 id="cost-savings-2">Cost Savings</h3>
+<ul>
+  <li><strong>Traditional</strong>: $50K-100K+ (tools, learning, respins)</li>
+  <li><strong>With MetaForge Phase 3</strong>: <strong>$2K-5K</strong> (vendor costs only)</li>
+</ul>
+
+<hr />
+
+<h2 id="-how-metaforge-solves-it">🎨 How MetaForge Solves It</h2>
+
+<h3 id="value-proposition-speed--safety--knowledge">Value Proposition: Speed + Safety + Knowledge</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Value["MetaForge Value Proposition"]
+        direction TB
+
+        V1["⚡ Speed&lt;br/&gt;──────&lt;br/&gt;60-90% faster&lt;br/&gt;Weeks → Days"]
+        V2["🛡️ Safety&lt;br/&gt;──────&lt;br/&gt;Errors caught early&lt;br/&gt;$50K saved per respin"]
+        V3["📚 Knowledge&lt;br/&gt;──────&lt;br/&gt;Git-native, fully traceable&lt;br/&gt;No knowledge loss"]
+
+        V1 --&gt; R1["Phase 1: 2-3 weeks&lt;br/&gt;Phase 3: 2-3 weeks total"]
+        V2 --&gt; R2["Simulation before fabrication&lt;br/&gt;DFM validation before order"]
+        V3 --&gt; R3["Every decision version-controlled&lt;br/&gt;Full audit trail"]
+    end
+
+    style V1 fill:#c8e6c9,stroke:#388e3c
+    style V2 fill:#e3f2fd,stroke:#1976d2
+    style V3 fill:#fff9c4,stroke:#f57c00
+</code></pre>
+
+<h3 id="core-workflow-across-phases">Core Workflow Across Phases</h3>
 
 <pre><code class="language-mermaid">sequenceDiagram
     participant E as 👨‍💻 Engineer
     participant C as 💻 CLI
     participant G as 🔥 Gateway
     participant A as 🤖 Agents
-    participant T as 🔧 Tools
+    participant V as 🏭 Vendors
 
+    Note over E,V: Phase 1: Human-in-the-Loop
     E-&gt;&gt;C: forge run spec
     C-&gt;&gt;G: Execute workflow
-    G-&gt;&gt;A: Spawn requirements agent
-    A-&gt;&gt;A: Process PRD
+    G-&gt;&gt;A: Spawn agents
     A-&gt;&gt;G: Return artifacts
-    G-&gt;&gt;C: Show diff for approval
-    C-&gt;&gt;E: Review changes
+    G-&gt;&gt;E: Show diff for approval ✋
     E-&gt;&gt;C: forge approve
-    C-&gt;&gt;G: Apply changes
-    G-&gt;&gt;T: Generate KiCad files
-    T-&gt;&gt;G: Artifacts created
-    G-&gt;&gt;E: ✅ Hardware ready
+    C-&gt;&gt;E: Continue in KiCad manually
+
+    Note over E,V: Phase 2: Semi-Autonomous
+    E-&gt;&gt;C: forge create project
+    C-&gt;&gt;A: Full design pipeline
+    A-&gt;&gt;E: Milestone approvals (3-4x) ✋
+    E-&gt;&gt;C: forge approve-milestone
+    A-&gt;&gt;A: Auto-route, firmware gen
+    A-&gt;&gt;V: Place orders
+    V-&gt;&gt;E: Parts delivered
+
+    Note over E,V: Phase 3: Full Autonomous
+    E-&gt;&gt;C: forge create drone --quantity 10
+    C-&gt;&gt;A: End-to-end automation
+    A-&gt;&gt;V: Design → Manufacture → Test
+    V-&gt;&gt;E: Working products delivered 📦
 </code></pre>
+
+<hr />
+
+<h2 id="-agent-architecture-evolution">🤖 Agent Architecture Evolution</h2>
+
+<h3 id="phase-1-agents-v01-03---design-assistants">Phase 1 Agents (v0.1-0.3) - Design Assistants</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Phase1["Phase 1: 4-6 Specialist Agents"]
+        direction LR
+
+        A1[📋 Requirements&lt;br/&gt;Agent]
+        A2[🏗️ Architecture&lt;br/&gt;Agent]
+        A3[💰 BOM&lt;br/&gt;Agent]
+        A4[✅ DFM&lt;br/&gt;Agent]
+        A5[🔌 Power Budget&lt;br/&gt;Agent]
+        A6[📝 Test Plan&lt;br/&gt;Agent]
+
+        A1 --&gt; Output1[constraints.json]
+        A2 --&gt; Output2[architecture.md]
+        A3 --&gt; Output3[bom.csv]
+        A4 --&gt; Output4[dfm-report.json]
+        A5 --&gt; Output5[power-budget.json]
+        A6 --&gt; Output6[test-procedures.md]
+    end
+
+    Human1[👨‍💻 Human] --&gt; Review[Reviews ALL outputs]
+    Review --&gt; Approve[Approves each step]
+    Approve --&gt; Manual[Manual PCB layout + ordering]
+
+    style Phase1 fill:#e3f2fd,stroke:#1976d2
+    style Human1 fill:#E67E22,color:#fff
+</code></pre>
+
+<hr />
+
+<h3 id="phase-2-agents-v04-06---autonomous-workers">Phase 2 Agents (v0.4-0.6) - Autonomous Workers</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Phase2["Phase 2: 10-12 Specialist Agents"]
+        direction TB
+
+        subgraph Design["Design Agents"]
+            D1[📋 Requirements]
+            D2[🏗️ Architecture]
+            D3[🔌 Power Budget]
+        end
+
+        subgraph Implementation["Implementation Agents"]
+            I1[📐 Schematic&lt;br/&gt;Generator]
+            I2[🗺️ PCB Auto&lt;br/&gt;Router]
+            I3[💻 Firmware&lt;br/&gt;Generator]
+            I4[🔧 Mechanical&lt;br/&gt;CAD]
+        end
+
+        subgraph Validation["Validation Agents"]
+            V1[🧪 SPICE&lt;br/&gt;Simulator]
+            V2[🛡️ DFM&lt;br/&gt;Validator]
+            V3[📊 Thermal&lt;br/&gt;Analyzer]
+        end
+
+        subgraph Manufacturing["Manufacturing Agents"]
+            M1[📦 Ordering&lt;br/&gt;Agent]
+            M2[🏭 Vendor&lt;br/&gt;Coordinator]
+        end
+
+        Design --&gt; Implementation
+        Implementation --&gt; Validation
+        Validation --&gt; Manufacturing
+    end
+
+    Human2[👨‍💻 Human] --&gt; Milestones[Approves 3-4 milestones]
+    Milestones --&gt; Assembly[Final assembly only]
+
+    style Phase2 fill:#fff3e0,stroke:#f57c00
+    style Human2 fill:#E67E22,color:#fff
+</code></pre>
+
+<hr />
+
+<h3 id="phase-3-agents-v07-10---full-autonomy">Phase 3 Agents (v0.7-1.0) - Full Autonomy</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Phase3["Phase 3: 15+ Specialist Agents + Orchestrator"]
+        direction TB
+
+        Orchestrator[🎯 Orchestrator Agent&lt;br/&gt;End-to-End Coordination]
+
+        subgraph All["All Phase 2 Agents +"]
+            direction LR
+
+            N1[🧪 Remote&lt;br/&gt;Testing]
+            N2[📜 Certification&lt;br/&gt;Documentation]
+            N3[🏭 Assembly&lt;br/&gt;Coordination]
+            N4[📊 Quality&lt;br/&gt;Assurance]
+            N5[📦 Supply&lt;br/&gt;Chain]
+            N6[✈️ Logistics]
+        end
+
+        Orchestrator --&gt; All
+        All --&gt; Products[📦 Working Products]
+    end
+
+    Human3[👨‍💻 Human] --&gt; PRD[Writes PRD + Budget]
+    PRD --&gt; Orchestrator
+    Products --&gt; Delivery[Receives products]
+
+    style Phase3 fill:#e8f5e9,stroke:#388e3c
+    style Orchestrator fill:#27ae60,color:#fff
+    style Human3 fill:#E67E22,color:#fff
+</code></pre>
+
+<p><strong>Key Insight</strong>: As we progress from Phase 1 → 3, agents become more capable and coordinated, while human involvement shifts from continuous review to strategic direction.</p>
 
 <hr />
 
@@ -385,49 +1130,61 @@
 
 <hr />
 
-<h2 id="key-highlights">Key Highlights</h2>
+<h2 id="-roadmap-three-phase-evolution">📅 Roadmap: Three-Phase Evolution</h2>
 
-<h3 id="development-phases">Development Phases</h3>
+<h3 id="development-timeline">Development Timeline</h3>
 
 <pre><code class="language-mermaid">gantt
     title MetaForge Development Roadmap
     dateFormat YYYY-MM
-    section v0.1
-    CLI &amp; Gateway        :2024-01, 2024-02
-    Requirements Agent   :2024-02, 2024-03
-    section v0.2
-    Architecture Agent   :2024-03, 2024-04
-    Power Budget Agent   :2024-03, 2024-04
-    BOM Agent           :2024-04, 2024-05
-    section v0.3
-    Schematic Agent     :2024-05, 2024-06
-    DFM Agent           :2024-05, 2024-06
-    Firmware Support    :2024-06, 2024-07
+    section Phase 1: Design Assistant (HIL)
+    v0.1: CLI &amp; Gateway           :2024-01, 2M
+    v0.2: Architecture Agent      :2024-03, 2M
+    v0.3: Schematic &amp; DFM         :2024-05, 2M
+    section Phase 2: Semi-Autonomous
+    v0.4: PCB Auto-Routing        :2024-07, 3M
+    v0.5: Firmware Generation     :2024-10, 3M
+    v0.6: Manufacturing Integration :2025-01, 3M
+    section Phase 3: Full Autonomous
+    v0.7: End-to-End Automation   :2025-04, 4M
+    v0.8: Quality &amp; Testing       :2025-08, 3M
+    v0.9: Certification           :2025-11, 3M
+    v1.0: Production Ready        :2026-02, 2M
 </code></pre>
+
+<h3 id="feature-progression-by-phase">Feature Progression by Phase</h3>
 
 <table>
   <thead>
     <tr>
       <th>Phase</th>
+      <th>Version</th>
       <th>Key Features</th>
+      <th>Time Savings</th>
+      <th>Human Role</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>v0.1 (Current)</td>
-      <td>CLI, Gateway, Requirements Agent, KiCad integration</td>
+      <td><strong>Phase 1:<br />Design Assistant</strong></td>
+      <td>v0.1-0.3</td>
+      <td>• Requirements extraction<br />• Component selection<br />• BOM generation<br />• DFM validation<br />• Test plan generation</td>
+      <td>60% faster<br />(2-3 weeks)</td>
+      <td>• Write PRD<br />• Review approvals<br />• PCB layout<br />• Order parts<br />• Assembly</td>
     </tr>
     <tr>
-      <td>v0.2</td>
-      <td>Architecture Agent, Power Budget, BOM with suppliers</td>
+      <td><strong>Phase 2:<br />Semi-Autonomous</strong></td>
+      <td>v0.4-0.6</td>
+      <td>• <strong>All Phase 1 features</strong><br />• PCB auto-routing<br />• Firmware generation<br />• Mechanical CAD<br />• Virtual prototyping<br />• Automated ordering</td>
+      <td>85% faster<br />(1 week)</td>
+      <td>• Write PRD<br />• Approve milestones (3-4x)<br />• Final assembly</td>
     </tr>
     <tr>
-      <td>v0.3</td>
-      <td>Schematic Agent, DFM checks, Firmware scaffolding</td>
-    </tr>
-    <tr>
-      <td>v1.0</td>
-      <td>Multi-user, Cloud sync, Advanced agents</td>
+      <td><strong>Phase 3:<br />Full Autonomous</strong></td>
+      <td>v0.7-1.0</td>
+      <td>• <strong>All Phase 2 features</strong><br />• Manufacturing coordination<br />• Remote testing<br />• Certification docs<br />• Supply chain mgmt<br />• Quality assurance</td>
+      <td>90%+ faster<br />(2-3 weeks)</td>
+      <td>• Write PRD<br />• Set budget<br />• Receive products</td>
     </tr>
   </tbody>
 </table>
@@ -475,127 +1232,567 @@
 
 <hr />
 
-<h2 id="core-workflow">Core Workflow</h2>
+<h2 id="-core-workflows-by-phase">🔄 Core Workflows by Phase</h2>
+
+<h3 id="phase-1-workflow-current---v01-03">Phase 1 Workflow (Current - v0.1-0.3)</h3>
 
 <pre><code class="language-mermaid">flowchart TD
-    A[Write PRD.md] --&gt; B[forge run spec]
-    B --&gt; C{Requirements&lt;br/&gt;Agent}
-    C --&gt; D[constraints.json]
+    A[👨‍💻 Write PRD.md] --&gt; B[forge run spec]
+    B --&gt; C{🤖 Requirements&lt;br/&gt;Agent}
+    C --&gt; D[✅ Review constraints.json]
 
     D --&gt; E[forge run architecture]
-    E --&gt; F{Architecture&lt;br/&gt;Agent}
-    F --&gt; G[architecture.md&lt;br/&gt;block diagram]
+    E --&gt; F{🤖 Architecture&lt;br/&gt;Agent}
+    F --&gt; G[✅ Review architecture.md]
 
-    G --&gt; H[forge run schematic-plan]
-    H --&gt; I{Schematic&lt;br/&gt;Agent}
-    I --&gt; J[KiCad schematic]
+    G --&gt; H[forge run bom]
+    H --&gt; I{🤖 BOM&lt;br/&gt;Agent}
+    I --&gt; J[✅ Review bom.csv]
 
-    J --&gt; K[forge run bom]
-    K --&gt; L{BOM Agent}
-    L --&gt; M[bom.csv&lt;br/&gt;costing.json]
+    J --&gt; K[forge run dfm]
+    K --&gt; L{🤖 DFM&lt;br/&gt;Agent}
+    L --&gt; M[✅ Review DFM report]
 
-    M --&gt; N[forge run dfm]
-    N --&gt; O{DFM Agent}
-    O --&gt; P[Manufacturing&lt;br/&gt;outputs]
+    M --&gt; N[👨‍💻 Manual: KiCad layout]
+    N --&gt; O[👨‍💻 Manual: Order from JLCPCB]
+    O --&gt; P[👨‍💻 Manual: Assembly &amp; test]
 
     style A fill:#E67E22,color:#fff
-    style P fill:#27ae60,color:#fff
+    style D fill:#FFF4E6,stroke:#E67E22
+    style G fill:#FFF4E6,stroke:#E67E22
+    style J fill:#FFF4E6,stroke:#E67E22
+    style M fill:#FFF4E6,stroke:#E67E22
     style C fill:#9b59b6,color:#fff
     style F fill:#9b59b6,color:#fff
     style I fill:#9b59b6,color:#fff
     style L fill:#9b59b6,color:#fff
-    style O fill:#9b59b6,color:#fff
+    style P fill:#27ae60,color:#fff
 </code></pre>
+
+<p><strong>Key Point</strong>: Human reviews every agent output, then manually completes PCB layout and manufacturing.</p>
 
 <hr />
 
-<h2 id="project-status">Project Status</h2>
+<h3 id="phase-2-workflow-future---v04-06">Phase 2 Workflow (Future - v0.4-0.6)</h3>
 
-<p><strong>Current Phase</strong>: v0.1 - Foundation</p>
+<pre><code class="language-mermaid">flowchart TD
+    A[👨‍💻 Write PRD.md] --&gt; B[forge create project]
+    B --&gt; C{🤖 Full Design&lt;br/&gt;Pipeline}
+    C --&gt; D[✅ Approve Milestone 1:&lt;br/&gt;Component selection]
 
-<p><strong>What Works</strong>:</p>
+    D --&gt; E{🤖 Schematic +&lt;br/&gt;Auto-routing}
+    E --&gt; F[✅ Approve Milestone 2:&lt;br/&gt;PCB design]
+
+    F --&gt; G{🤖 Firmware +&lt;br/&gt;Mechanical CAD}
+    G --&gt; H[✅ Approve Milestone 3:&lt;br/&gt;Complete design]
+
+    H --&gt; I{🤖 Manufacturing&lt;br/&gt;Coordination}
+    I --&gt; J[📦 Parts delivered]
+    J --&gt; K[👨‍💻 Assembly &amp; test]
+
+    style A fill:#E67E22,color:#fff
+    style D fill:#FFF4E6,stroke:#E67E22
+    style F fill:#FFF4E6,stroke:#E67E22
+    style H fill:#FFF4E6,stroke:#E67E22
+    style C fill:#9b59b6,color:#fff
+    style E fill:#9b59b6,color:#fff
+    style G fill:#9b59b6,color:#fff
+    style I fill:#9b59b6,color:#fff
+    style K fill:#27ae60,color:#fff
+</code></pre>
+
+<p><strong>Key Point</strong>: Human approves 3-4 milestones, agents handle all design work and ordering.</p>
+
+<hr />
+
+<h3 id="phase-3-workflow-vision---v07-10">Phase 3 Workflow (Vision - v0.7-1.0)</h3>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[👨‍💻 Write PRD + Budget] --&gt; B[forge create drone&lt;br/&gt;--quantity 10&lt;br/&gt;--budget 5000]
+    B --&gt; C{🤖 MetaForge&lt;br/&gt;End-to-End}
+    C --&gt; D[Design]
+    C --&gt; E[Simulate]
+    C --&gt; F[Manufacture]
+    C --&gt; G[Assemble]
+    C --&gt; H[Test]
+    C --&gt; I[Certify]
+    D --&gt; J[📦 Products delivered]
+    E --&gt; J
+    F --&gt; J
+    G --&gt; J
+    H --&gt; J
+    I --&gt; J
+
+    style A fill:#E67E22,color:#fff
+    style C fill:#27ae60,color:#fff,stroke:#2d5016,stroke-width:3px
+    style J fill:#27ae60,color:#fff,stroke:#2d5016,stroke-width:3px
+    style D fill:#9b59b6,color:#fff
+    style E fill:#9b59b6,color:#fff
+    style F fill:#9b59b6,color:#fff
+    style G fill:#9b59b6,color:#fff
+    style H fill:#9b59b6,color:#fff
+    style I fill:#9b59b6,color:#fff
+</code></pre>
+
+<p><strong>Key Point</strong>: One command, zero approvals, working products delivered.</p>
+
+<hr />
+
+<h2 id="-phase-comparison-matrix">📊 Phase Comparison Matrix</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Phase 1: Design Assistant</th>
+      <th>Phase 2: Semi-Autonomous</th>
+      <th>Phase 3: Full Autonomous</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Human Effort</strong></td>
+      <td>40% (3 weeks)</td>
+      <td>15% (2-3 days)</td>
+      <td>5% (1-2 hours)</td>
+    </tr>
+    <tr>
+      <td><strong>Approvals Required</strong></td>
+      <td>Every agent output (10-15x)</td>
+      <td>3-4 milestones</td>
+      <td>Optional final review</td>
+    </tr>
+    <tr>
+      <td><strong>Manual Work</strong></td>
+      <td>PCB layout, ordering, assembly</td>
+      <td>Final assembly</td>
+      <td>None (just receive)</td>
+    </tr>
+    <tr>
+      <td><strong>Time to Prototype</strong></td>
+      <td>2-3 weeks</td>
+      <td>1 week</td>
+      <td>2-3 weeks (includes manufacturing)</td>
+    </tr>
+    <tr>
+      <td><strong>Cost per Project</strong></td>
+      <td>~$5K (60% savings)</td>
+      <td>~$3K (85% savings)</td>
+      <td>~$2K (90% savings)</td>
+    </tr>
+    <tr>
+      <td><strong>Respin Risk</strong></td>
+      <td>20% (validation)</td>
+      <td>10% (simulation)</td>
+      <td>5% (full testing)</td>
+    </tr>
+    <tr>
+      <td><strong>Knowledge Capture</strong></td>
+      <td>Git-versioned artifacts</td>
+      <td>+ Simulation results</td>
+      <td>+ Test reports, certification docs</td>
+    </tr>
+    <tr>
+      <td><strong>Agent Count</strong></td>
+      <td>4-6 agents</td>
+      <td>10-12 agents</td>
+      <td>15+ agents</td>
+    </tr>
+    <tr>
+      <td><strong>Vendor Integration</strong></td>
+      <td>Manual ordering</td>
+      <td>Automated ordering</td>
+      <td>Full supply chain + manufacturing</td>
+    </tr>
+    <tr>
+      <td><strong>Target Users</strong></td>
+      <td>Hardware engineers</td>
+      <td>Small teams, startups</td>
+      <td>Anyone with an idea</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-current-project-status">📍 Current Project Status</h2>
+
+<p><strong>Current Phase</strong>: Phase 1 - v0.1 Foundation</p>
+
+<p><strong>What Works</strong> (v0.1):</p>
 <ul>
   <li>✅ Project structure defined</li>
-  <li>✅ Architecture documented</li>
-  <li>✅ Vision and principles established</li>
+  <li>✅ Architecture documented with 20+ Mermaid diagrams</li>
+  <li>✅ Three-phase evolution roadmap established</li>
+  <li>✅ Documentation site (Jekyll + Mermaid)</li>
   <li>⏳ CLI skeleton in progress</li>
   <li>⏳ Gateway service in development</li>
 </ul>
 
-<p><strong>Coming Next</strong>:</p>
+<p><strong>Next Milestones</strong> (v0.1-0.3):</p>
 <ul>
-  <li>🔄 Requirements agent</li>
-  <li>🔄 KiCad adapter (read-only)</li>
-  <li>🔄 Example drone flight controller</li>
+  <li>🔄 Requirements Agent (extracts constraints from PRD)</li>
+  <li>🔄 Architecture Agent (selects components, power budget)</li>
+  <li>🔄 BOM Agent (generates BOM with pricing)</li>
+  <li>🔄 DFM Agent (manufacturability validation)</li>
+  <li>🔄 KiCad adapter (read-only schematic generation)</li>
+  <li>🔄 Example: Drone flight controller project</li>
+</ul>
+
+<p><strong>Phase 1 Delivery</strong> (v0.3 - Target: 2024 Q3):</p>
+<ul>
+  <li>✅ Human writes PRD → Agents generate validated design artifacts</li>
+  <li>✅ 60% time savings vs. traditional workflow</li>
+  <li>✅ Git-versioned, traceable design decisions</li>
+  <li>✅ Early error detection before PCB fabrication</li>
 </ul>
 
 <hr />
 
-<h2 id="quick-start">Quick Start</h2>
+<h2 id="-quick-start-phase-1---current">🚀 Quick Start (Phase 1 - Current)</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install dependencies</span>
-npm <span class="nb">install</span>
+<p><strong>Current Status</strong>: v0.1 foundation in progress. The workflow below represents the target for Phase 1 completion (v0.3).</p>
 
-<span class="c"># Build the project</span>
-npm run build
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install MetaForge</span>
+npm <span class="nb">install</span> <span class="nt">-g</span> @metaforge/cli
 
 <span class="c"># Initialize workspace</span>
-forge setup
+forge init my-drone-project
+<span class="nb">cd </span>my-drone-project
 
-<span class="c"># Create your first project</span>
-forge onboard
+<span class="c"># Create PRD for your hardware project</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> PRD.md <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+# Drone Flight Controller
 
-<span class="c"># Start the gateway</span>
-forge gateway
+## Requirements
+- STM32F4 microcontroller
+- MPU6050 IMU sensor
+- 4x ESC outputs (PWM)
+- Power: 5V/3.3V regulators from 12V input
+- Budget: </span><span class="nv">$50</span><span class="sh"> total BOM cost
+</span><span class="no">EOF
 
-<span class="c"># Run your first workflow</span>
-forge run spec
+</span><span class="c"># Run Phase 1 workflow</span>
+forge run spec              <span class="c"># Extract requirements → constraints.json</span>
+forge run architecture      <span class="c"># Select components → architecture.md</span>
+forge run power-budget      <span class="c"># Calculate power → power-budget.json</span>
+forge run bom              <span class="c"># Generate BOM → bom.csv with pricing</span>
+forge run dfm              <span class="c"># Validate manufacturability → dfm-report.json</span>
+
+<span class="c"># Review artifacts (all version-controlled in Git)</span>
+git status                 <span class="c"># See generated artifacts</span>
+git diff                   <span class="c"># Review changes</span>
+forge approve              <span class="c"># Accept and commit</span>
+
+<span class="c"># Continue in KiCad (manual for Phase 1)</span>
+<span class="c"># - Import architecture.md as starting point</span>
+<span class="c"># - Use bom.csv for component placement</span>
+<span class="c"># - Order from JLCPCB using generated BOM</span>
 </code></pre></div></div>
+
+<p><strong>Time Saved</strong>: What would take 6-8 weeks now takes <strong>2-3 weeks</strong> with Phase 1.</p>
 
 <p><a href="getting-started/">Full Quick Start Guide →</a></p>
 
 <hr />
 
-<h2 id="design-principles">Design Principles</h2>
+<h2 id="-design-principles">🎯 Design Principles</h2>
 
 <pre><code class="language-mermaid">mindmap
     root((MetaForge&lt;br/&gt;Principles))
+        Evolutionary
+            Phase 1: Assist
+            Phase 2: Automate
+            Phase 3: Autonomous
+            Trust builds gradually
         Local-First
             No cloud dependency
             Works offline
             Data sovereignty
+            Your hardware, your data
         Git-Native
             Version all artifacts
             Diffs for review
             Commit history
+            Knowledge captured
         Agent-Driven
             Specialist agents
             Not god-mode AI
             Clear responsibilities
+            Composable workflows
         Safe by Default
             Read-only first
             Explicit approval
             Audit trail
+            Fail gracefully
         Reality Feedback
             Learn from builds
             Improve iterations
             Data-driven design
+            Continuous learning
 </code></pre>
 
-<hr />
+<h3 id="core-philosophy-gradual-autonomy">Core Philosophy: Gradual Autonomy</h3>
 
-<h2 id="community">Community</h2>
+<p><strong>MetaForge doesn’t replace engineers overnight.</strong> Instead, it evolves:</p>
 
+<ol>
+  <li><strong>Phase 1</strong>: Be a trusted assistant that saves time and catches errors</li>
+  <li><strong>Phase 2</strong>: Once trusted, take on more complex tasks with minimal oversight</li>
+  <li><strong>Phase 3</strong>: After proving itself, handle end-to-end product development</li>
+</ol>
+
+<p>This mirrors how engineers learn:</p>
 <ul>
-  <li><strong>GitHub</strong>: <a href="https://github.com/metaforge-labs/forge">metaforge-labs/forge</a></li>
-  <li><strong>License</strong>: MIT</li>
-  <li><strong>Contributing</strong>: See <a href="contributing/">Contributing Guide</a></li>
+  <li>Junior engineers need close review</li>
+  <li>Mid-level engineers need milestone approval</li>
+  <li>Senior engineers are trusted end-to-end</li>
+</ul>
+
+<p><strong>Why this matters:</strong></p>
+<ul>
+  <li>✅ Build trust through demonstrated value</li>
+  <li>✅ Users control pace of autonomy adoption</li>
+  <li>✅ Always maintain human override capability</li>
+  <li>✅ Learn from each phase before advancing</li>
 </ul>
 
 <hr />
 
-<p><em>MetaForge - Building better hardware, faster</em>
-<em>Status: Early Development (v0.1)</em></p>
+<h2 id="-why-metaforge">💬 Why MetaForge?</h2>
+
+<h3 id="for-hardware-engineers">For Hardware Engineers</h3>
+<ul>
+  <li>🎯 <strong>Stop wasting time on repetitive tasks</strong> - focus on creativity, not busywork</li>
+  <li>🛡️ <strong>Catch errors before fabrication</strong> - save $10K-50K per project</li>
+  <li>📚 <strong>Capture your knowledge</strong> - Git-native, never lose design decisions</li>
+  <li>⚡ <strong>Ship faster</strong> - 60-90% time savings across phases</li>
+</ul>
+
+<h3 id="for-startups--small-teams">For Startups &amp; Small Teams</h3>
+<ul>
+  <li>💰 <strong>Lower barrier to hardware</strong> - no need for senior EE ($150K+ salary)</li>
+  <li>🚀 <strong>Faster time to market</strong> - ship in weeks, not months</li>
+  <li>🔄 <strong>Iterate rapidly</strong> - validate ideas before committing $50K+</li>
+  <li>📖 <strong>Knowledge retention</strong> - survives team changes</li>
+</ul>
+
+<h3 id="for-hobbyists--makers">For Hobbyists &amp; Makers</h3>
+<ul>
+  <li>🎓 <strong>Learn by doing</strong> - agents explain decisions, teach best practices</li>
+  <li>🔧 <strong>Professional results</strong> - manufacturability validation built-in</li>
+  <li>💸 <strong>Avoid expensive mistakes</strong> - catch errors in simulation</li>
+  <li>🌐 <strong>Access expertise</strong> - agent knowledge from thousands of designs</li>
+</ul>
+
+<h3 id="for-the-industry">For the Industry</h3>
+<ul>
+  <li>🌍 <strong>Democratize hardware</strong> - make embedded systems accessible to all</li>
+  <li>📈 <strong>Accelerate innovation</strong> - reduce 2-5 year learning curve to months</li>
+  <li>♻️ <strong>Reduce waste</strong> - fewer respins = less e-waste</li>
+  <li>🤝 <strong>Bridge software → hardware</strong> - bring software development speed to hardware</li>
+</ul>
+
+<hr />
+
+<h2 id="-before--after-comparison">📸 Before &amp; After Comparison</h2>
+
+<h3 id="traditional-workflow-vs-metaforge-phase-3-vision">Traditional Workflow vs. MetaForge (Phase 3 Vision)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Traditional</th>
+      <th>MetaForge Phase 3</th>
+      <th>Time Saved</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Requirements</strong></td>
+      <td>3-4 days (manual PRD analysis)</td>
+      <td>5 minutes (automated extraction)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>Component Research</strong></td>
+      <td>2-3 days (browsing 10+ websites)</td>
+      <td>10 minutes (AI-powered selection)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>Schematic Design</strong></td>
+      <td>1-2 weeks (manual KiCad)</td>
+      <td>1 hour (auto-generated + simulation)</td>
+      <td>98% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>PCB Layout</strong></td>
+      <td>1-2 weeks (manual routing)</td>
+      <td>2 hours (auto-routing + DRC)</td>
+      <td>97% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>BOM Creation</strong></td>
+      <td>4-6 hours (Excel + manual pricing)</td>
+      <td>2 minutes (auto-generated)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>Power Budget</strong></td>
+      <td>2-3 hours (calculator + spreadsheet)</td>
+      <td>1 minute (automated calculation)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>DFM Validation</strong></td>
+      <td>Never done (or found post-fab ❌)</td>
+      <td>5 minutes (pre-flight checks)</td>
+      <td>∞ 💰</td>
+    </tr>
+    <tr>
+      <td><strong>Ordering</strong></td>
+      <td>2-3 hours (manual vendor upload)</td>
+      <td>1 click (automated)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>Firmware Skeleton</strong></td>
+      <td>1 week (manual driver setup)</td>
+      <td>10 minutes (auto-generated)</td>
+      <td>99% ⚡</td>
+    </tr>
+    <tr>
+      <td><strong>Error Detection</strong></td>
+      <td>Week 9 (💸 $50K respin)</td>
+      <td>Week 1 (simulation, $0 cost)</td>
+      <td>💰</td>
+    </tr>
+    <tr>
+      <td><strong>Knowledge Capture</strong></td>
+      <td>Lost on engineer turnover 💀</td>
+      <td>Git-versioned forever ✅</td>
+      <td>∞ 📚</td>
+    </tr>
+    <tr>
+      <td><strong>Total Time</strong></td>
+      <td><strong>6-8 weeks</strong></td>
+      <td><strong>2-3 weeks</strong></td>
+      <td><strong>90%+</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Total Cost</strong></td>
+      <td><strong>$50K+</strong> (incl. respins)</td>
+      <td><strong>$2K-5K</strong></td>
+      <td><strong>85%+</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-the-metaforge-journey">🎬 The MetaForge Journey</h2>
+
+<pre><code class="language-mermaid">timeline
+    title From Concept to Reality
+    section Today: Broken
+        Hardware takes 6-8 weeks
+        40-60% respin rate
+        $50K+ per project
+        Knowledge lost on turnover
+    section 2024 Q3: Phase 1 Ships
+        Design Assistant available
+        60% time savings
+        Early error detection
+        Git-native artifacts
+    section 2025 Q2: Phase 2 Ships
+        Semi-autonomous design
+        85% time savings
+        Auto-routing + firmware
+        Minimal human oversight
+    section 2026 Q1: Phase 3 Ships
+        Full autonomous platform
+        90%+ time savings
+        PRD → delivered products
+        Hardware as easy as software
+</code></pre>
+
+<hr />
+
+<h2 id="-get-started-today">🚀 Get Started Today</h2>
+
+<h3 id="current-status-2024">Current Status (2024)</h3>
+<ul>
+  <li>📍 <strong>Phase 1 (v0.1) in active development</strong></li>
+  <li>🎯 Target: Q3 2024 for initial release</li>
+  <li>🔓 Open source (MIT License)</li>
+  <li>🤝 Community-driven development</li>
+</ul>
+
+<h3 id="how-to-participate">How to Participate</h3>
+
+<p><strong>For Early Adopters:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Star the repo to follow progress</span>
+git clone https://github.com/metaforge-labs/forge
+<span class="nb">cd </span>forge
+npm <span class="nb">install
+</span>npm run build
+
+<span class="c"># Join the community</span>
+<span class="c"># - Provide feedback on workflows</span>
+<span class="c"># - Test early prototypes</span>
+<span class="c"># - Share your hardware projects</span>
+</code></pre></div></div>
+
+<p><strong>For Contributors:</strong></p>
+<ul>
+  <li>💻 <strong>Developers</strong>: Build agents, tool adapters, integrations</li>
+  <li>📚 <strong>Writers</strong>: Improve documentation, create tutorials</li>
+  <li>🧪 <strong>Testers</strong>: Test with real hardware projects</li>
+  <li>🎨 <strong>Designers</strong>: UI/UX for CLI and web interfaces</li>
+</ul>
+
+<p>See <a href="contributing/">Contributing Guide</a> for details.</p>
+
+<hr />
+
+<h2 id="-community--resources">📞 Community &amp; Resources</h2>
+
+<ul>
+  <li><strong>GitHub</strong>: <a href="https://github.com/metaforge-labs/forge">metaforge-labs/forge</a></li>
+  <li><strong>Documentation</strong>: <a href="http://localhost:4000">metaforge.dev</a> (you are here)</li>
+  <li><strong>License</strong>: MIT (free forever)</li>
+  <li><strong>Contributing</strong>: See <a href="contributing/">Contributing Guide</a></li>
+</ul>
+
+<h3 id="join-the-movement">Join the Movement</h3>
+
+<p>MetaForge is building the future of hardware development. We’re making embedded systems design:</p>
+<ul>
+  <li>⚡ <strong>10x faster</strong></li>
+  <li>🛡️ <strong>10x safer</strong> (catch errors early)</li>
+  <li>📚 <strong>∞x more traceable</strong> (Git-native knowledge)</li>
+  <li>🌍 <strong>Accessible to everyone</strong></li>
+</ul>
+
+<p><strong>Hardware engineers deserve better tools.</strong>
+<strong>Let’s build them together.</strong></p>
+
+<hr />
+
+<div align="center">
+
+  <p><strong>MetaForge - From Design Assistant to Autonomous Hardware Platform</strong></p>
+
+  <p><em>Phase 1 ships 2024 Q3 • Phase 2 ships 2025 Q2 • Phase 3 ships 2026 Q1</em></p>
+
+  <p><a href="getting-started/" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2">Get Started</a>
+<a href="architecture/" class="btn fs-5 mb-4 mb-md-0">View Architecture</a></p>
+
+  <p><em>Status: Early Development (v0.1) • Built with conviction that hardware deserves better tools</em></p>
+
+</div>
 
       </main>
 

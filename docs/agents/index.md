@@ -66,6 +66,45 @@ flowchart TB
 
 ---
 
+## Agent Naming Reference
+
+**Canonical Agent Names**: MetaForge uses consistent naming across documentation. Abbreviations are used in technical architecture docs, full names in user-facing documentation.
+
+| Code | Full Name | Alternative Names | Phase Introduced | Disciplines Covered |
+|------|-----------|-------------------|------------------|---------------------|
+| **PMO** | Programme Orchestration Agent | Project Manager Agent | Phase 2 | Product management, roadmapping |
+| **PRD** | Product Definition Agent | Product Manager Agent | Phase 1 | Market analysis, feature prioritization |
+| **REQ** | Requirements Agent | Product Spec Agent, Constraints Agent | Phase 1 | Requirements extraction, traceability |
+| **SYS** | Systems Agent | Architecture Agent, Integration Agent | Phase 1 | Systems engineering, MBSE, interfaces |
+| **ID** | Industrial Design Agent | HF Agent, UX Design Agent | Phase 2 | Form factor, ergonomics, aesthetics |
+| **ME** | Mechanical Agent | Mechanical Engineering Agent | Phase 2 | CAD, FEA, thermal, tolerance analysis |
+| **EE** | Electronics Agent | Electronics Engineering Agent | Phase 1 | Schematics, PCB, power/signal integrity |
+| **FW** | Firmware Agent | Embedded Software Agent | Phase 1 | Drivers, RTOS, HAL, application code |
+| **ROB** | Robotics Agent | Autonomy Agent, AI Agent | Phase 2 | Motion planning, perception, controls |
+| **SIM** | Simulation Agent | Digital Twin Agent | Phase 1 | SPICE, FEA, CFD, virtual prototyping |
+| **TST** | Test Engineering Agent | Validation Agent, QA Agent | Phase 1 | Test plans, automation, coverage |
+| **REL** | Reliability Agent | FMEA Agent, Safety Agent | Phase 2 | FMEA, FTA, HALT/HASS, MTBF |
+| **MFG** | Manufacturing Agent | NPI Agent, Production Agent | Phase 1 | DFM, DFA, work instructions, yield |
+| **SC** | Supply Chain Agent | Supplier Agent, Procurement Agent | Phase 1 | Sourcing, alternates, EOL tracking |
+| **QA** | Quality Agent | QMS Agent, CAPA Agent | Phase 2 | Quality systems, CAPA, audits |
+| **REG** | Regulatory Agent | Compliance Agent, Certification Agent | Phase 1 | UKCA, FCC, CE, standards mapping |
+| **SEC** | Cybersecurity Agent | Security Agent, InfoSec Agent | Phase 2 | Threat modeling, SBOM, vulnerabilities |
+| **FIELD** | Field Engineering Agent | Deployment Agent, Service Agent | Phase 2 | Installation, calibration, RMA |
+
+**Usage Guidelines**:
+- **User Documentation** (`README.md`, `docs/index.md`): Use full names (e.g., "Requirements Agent")
+- **Technical Architecture** (`docs/architecture/`): Use abbreviations with legend (e.g., "REQ Agent")
+- **Code/APIs**: Use lowercase codes (e.g., `req_agent`, `ee_agent`)
+
+**Phase-Based Agent Count**:
+- **Phase 1 (v0.1-0.3)**: 6-8 core agents (REQ, SYS, EE, FW, SIM, TST, MFG, SC, REG)
+- **Phase 2 (v0.4-0.6)**: +6-7 agents (ID, ME, ROB, REL, QA, SEC, FIELD)
+- **Phase 3 (v0.7-1.0)**: +3-5 agents (PMO, PRD, advanced specializations)
+
+**Total**: 15-20 specialized agents by Phase 3, covering all 25 hardware product development disciplines.
+
+---
+
 ## Agent Types
 
 ### 1. Requirements Agent

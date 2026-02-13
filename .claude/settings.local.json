@@ -12,7 +12,8 @@
       "mcp__github__get_file_contents",
       "Bash(bundle exec jekyll build:*)",
       "Bash(cat:*)",
-      "mcp__jlcmcp__search"
+      "mcp__jlcmcp__search",
+      "WebSearch"
     ]
   }
 }

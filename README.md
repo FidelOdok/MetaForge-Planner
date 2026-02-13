@@ -123,26 +123,46 @@ npm run dev
 
 ## Roadmap
 
-### v0.1 (Current)
+### Phase 1: Design Assistant (v0.1-0.3)
+**Human-in-the-Loop | Development Time: 6 months | User Time Saved: 60%**
+**Delivers: 6-7 specialist agents covering core engineering disciplines**
+
 - [x] Project structure
 - [x] Vision & architecture
-- [ ] CLI skeleton
-- [ ] Gateway service
-- [ ] KiCad read-only adapter
-- [ ] Requirements agent
-- [ ] Example: drone FC
+- [ ] CLI skeleton & Gateway service
+- [ ] Digital thread core (Neo4j + graph DB)
+- [ ] Requirements agent (PRD → constraints)
+- [ ] BOM agent with supplier integration (Digi-Key, Mouser, Nexar)
+- [ ] Electronics/Architecture agent (component selection, power budget)
+- [ ] Firmware/Embedded agent (driver generation)
+- [ ] Simulation agent (SPICE, thermal analysis)
+- [ ] Manufacturing Prep agent (DFM validation)
+- [ ] Supply Chain/Cost agent (BOM costing, supplier integration)
+- [ ] Test Plan agent (test generation - partial)
+- [ ] KiCad adapter (read-only)
+- [ ] Example: drone flight controller
 
-### v0.2
-- [ ] Schematic planning agent
-- [ ] Power budget agent
-- [ ] BOM agent with supplier integration
-- [ ] DFM checks
+### Phase 2: Semi-Autonomous (v0.4-0.6)
+**Minimal Human Input | Development Time: +6 months | User Time Saved: 85%**
 
-### v0.3
-- [ ] Firmware scaffolding
-- [ ] Bring-up agent
-- [ ] Test plan generation
-- [ ] Reality feedback loop
+- [ ] PCB auto-routing (KiCad automation)
+- [ ] Firmware scaffolding (driver generation, RTOS config)
+- [ ] Mechanical CAD integration (SOLIDWORKS, Fusion 360)
+- [ ] Lab automation (SCPI/VISA, OpenTAP)
+- [ ] QMS/CAPA workflows
+- [ ] Manufacturing integration (MacroFab, JLCPCB)
+- [ ] Virtual prototyping (SPICE, thermal, flight sim)
+
+### Phase 3: Full Autonomous (v0.7-1.0)
+**End-to-End Automation | Development Time: +12 months | User Time Saved: 90%+**
+
+- [ ] PLM/ERP/MES integration (Teamcenter, SAP)
+- [ ] Supplier scorecards & advanced procurement
+- [ ] Certification automation (FCC, CE, UKCA, PSTI)
+- [ ] Advanced safety cases (IEC 61508, ISO 12100)
+- [ ] Remote testing infrastructure
+- [ ] Fleet telemetry & OTA updates
+- [ ] Production scaling & quality assurance
 
 ## Why MetaForge?
 
@@ -161,7 +181,7 @@ MIT
 
 ## Contributing
 
-MetaForge is early. If you're interested in contributing, start by reading `VISION.md` and `docs/architecture.md`.
+MetaForge is early. If you're interested in contributing, start by reading `docs/index.md` and `docs/architecture/index.md`.
 
 ---
 

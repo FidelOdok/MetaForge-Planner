@@ -40,10 +40,12 @@ nav:
     children:
       - title: System Architecture
         url: /architecture/
-      - title: Components
-        url: /architecture/components
-      - title: Permissions
-        url: /architecture/permissions
+      - title: Orchestrator Technical
+        url: /architecture/orchestrator-technical
+      - title: MVP Roadmap
+        url: /architecture/mvp-roadmap
+  - title: Framework Mapping
+    url: /FRAMEWORK_MAPPING
   - title: Agents
     url: /agents/
   - title: Tools
@@ -52,6 +54,13 @@ nav:
     url: /api/
   - title: Examples
     url: /examples/
+  - title: Research
+    url: /research/
+    children:
+      - title: Hardware Development Framework
+        url: /research/hardware-development-layers
+      - title: Industry Analysis
+        url: /research/industry-analysis
   - title: Contributing
     url: /contributing/
 

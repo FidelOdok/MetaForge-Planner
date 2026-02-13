@@ -63,14 +63,19 @@
               </li>
               
               <li class="nav-subitem ">
-                <a href="/architecture/components" class="nav-sublink">Components</a>
+                <a href="/architecture/orchestrator-technical" class="nav-sublink">Orchestrator Technical</a>
               </li>
               
               <li class="nav-subitem ">
-                <a href="/architecture/permissions" class="nav-sublink">Permissions</a>
+                <a href="/architecture/mvp-roadmap" class="nav-sublink">MVP Roadmap</a>
               </li>
               
             </ul>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/FRAMEWORK_MAPPING" class="nav-link">Framework Mapping</a>
             
           </li>
           
@@ -91,6 +96,23 @@
           
           <li class="nav-item ">
             <a href="/examples/" class="nav-link">Examples</a>
+            
+          </li>
+          
+          <li class="nav-item ">
+            <a href="/research/" class="nav-link">Research</a>
+            
+            <ul class="nav-sublist">
+              
+              <li class="nav-subitem ">
+                <a href="/research/hardware-development-layers" class="nav-sublink">Hardware Development Framework</a>
+              </li>
+              
+              <li class="nav-subitem ">
+                <a href="/research/industry-analysis" class="nav-sublink">Industry Analysis</a>
+              </li>
+              
+            </ul>
             
           </li>
           
@@ -919,7 +941,7 @@ forge create drone-fc <span class="se">\</span>
 <h3 id="phase-2-agents-v04-06---autonomous-workers">Phase 2 Agents (v0.4-0.6) - Autonomous Workers</h3>
 
 <pre><code class="language-mermaid">flowchart TB
-    subgraph Phase2["Phase 2: 10-12 Specialist Agents"]
+    subgraph Phase2["Phase 2: 12 Specialist Agents"]
         direction TB
 
         subgraph Design["Design Agents"]
@@ -1072,12 +1094,12 @@ forge create drone-fc <span class="se">\</span>
       <td style="text-align: left">Complete system design and data flows</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="architecture/components">Components</a></td>
-      <td style="text-align: left">Gateway, agents, and tool adapters</td>
+      <td style="text-align: left"><a href="architecture/orchestrator-technical">Orchestrator Technical</a></td>
+      <td style="text-align: left">Standards-based orchestrator with digital thread, event-driven workflows, and governance</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="architecture/permissions">Permission Model</a></td>
-      <td style="text-align: left">Safety and security architecture</td>
+      <td style="text-align: left"><a href="architecture/mvp-roadmap">MVP Roadmap</a></td>
+      <td style="text-align: left">Phased implementation from MVP to enterprise with technology stack and timelines</td>
     </tr>
   </tbody>
 </table>
@@ -1493,6 +1515,102 @@ forge approve              <span class="c"># Accept and commit</span>
 <p><strong>Time Saved</strong>: What would take 6-8 weeks now takes <strong>2-3 weeks</strong> with Phase 1.</p>
 
 <p><a href="getting-started/">Full Quick Start Guide →</a></p>
+
+<hr />
+
+<h2 id="-key-terminology">📖 Key Terminology</h2>
+
+<h3 id="gateway-vs-orchestrator">Gateway vs. Orchestrator</h3>
+
+<p><strong>Gateway Service</strong>: The HTTP/WebSocket API server that provides the interface for CLI and web clients. Handles authentication, request routing, and real-time updates. Think of it as the “front door” to MetaForge.</p>
+
+<p><strong>Orchestrator</strong>: The coordination and workflow engine that manages specialist agents, enforces policies, maintains the digital thread, and orchestrates cross-disciplinary workflows. This is the “brain” that coordinates all the agents.</p>
+
+<p><strong>Relationship</strong>: The Gateway Service <strong>contains</strong> the Orchestrator engine. When you see “MetaForge Gateway” in architecture diagrams, it includes both the API layer (Gateway) and the coordination logic (Orchestrator).</p>
+
+<p><strong>In Practice</strong>:</p>
+<ul>
+  <li>Run the Gateway: <code class="language-plaintext highlighter-rouge">forge gateway</code> (starts both the API server and orchestrator)</li>
+  <li>The Orchestrator coordinates agents behind the scenes</li>
+  <li>Users interact with the Gateway’s API/CLI interface</li>
+</ul>
+
+<h3 id="agent-terminology">Agent Terminology</h3>
+
+<p>MetaForge uses <strong>specialist agents</strong> (not god-mode AI). Each agent is an expert in one discipline:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Abbreviation</th>
+      <th>Full Name</th>
+      <th>Alternative Names</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>REQ</strong></td>
+      <td>Requirements Agent</td>
+      <td>Product Spec Agent</td>
+    </tr>
+    <tr>
+      <td><strong>SYS</strong></td>
+      <td>Systems Agent</td>
+      <td>Architecture Agent</td>
+    </tr>
+    <tr>
+      <td><strong>EE</strong></td>
+      <td>Electronics Agent</td>
+      <td>Electronics Engineering Agent</td>
+    </tr>
+    <tr>
+      <td><strong>ME</strong></td>
+      <td>Mechanical Agent</td>
+      <td>Mechanical Engineering Agent</td>
+    </tr>
+    <tr>
+      <td><strong>FW</strong></td>
+      <td>Firmware Agent</td>
+      <td>Embedded Software Agent</td>
+    </tr>
+    <tr>
+      <td><strong>SC</strong></td>
+      <td>Supply Chain Agent</td>
+      <td>Supplier Agent, Procurement Agent</td>
+    </tr>
+    <tr>
+      <td><strong>MFG</strong></td>
+      <td>Manufacturing Agent</td>
+      <td>NPI Agent, Production Agent</td>
+    </tr>
+    <tr>
+      <td><strong>REG</strong></td>
+      <td>Regulatory Agent</td>
+      <td>Compliance Agent, Certification Agent</td>
+    </tr>
+    <tr>
+      <td><strong>SEC</strong></td>
+      <td>Cybersecurity Agent</td>
+      <td>Security Agent</td>
+    </tr>
+    <tr>
+      <td><strong>FIELD</strong></td>
+      <td>Field Engineering Agent</td>
+      <td>Deployment Agent, Service Agent</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Phase-based Agent Count</strong>:</p>
+<ul>
+  <li><strong>Phase 1 (v0.1-0.3)</strong>: 6-7 specialist agents covering 6-7 core disciplines (Layer 1 foundation + cost engineering)</li>
+  <li><strong>Phase 2 (v0.4-0.6)</strong>: 19 specialist agents covering 19 disciplines (completes Layer 1 with Industrial Design &amp; Prototyping, adds Layers 2-3)</li>
+  <li><strong>Phase 3 (v0.7-1.0)</strong>: 25 specialist agents covering all 25 disciplines (adds Layer 4: regulatory, lifecycle, sustainability)</li>
+</ul>
+
+<h3 id="digital-thread">Digital Thread</h3>
+
+<p>A <strong>graph database</strong> linking all product lifecycle artefacts: requirements → design → BOM → tests → evidence → compliance. Enables queries like “Which requirements are at risk due to component EOL?” and “Trace this field failure back to the original design decision.”</p>
 
 <hr />
 

@@ -690,7 +690,7 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-    subgraph Phase2["Phase 2: 10-12 Specialist Agents"]
+    subgraph Phase2["Phase 2: 12 Specialist Agents"]
         direction TB
 
         subgraph Design["Design Agents"]
@@ -818,8 +818,8 @@ flowchart TB
 | Document | Description |
 |:---------|:------------|
 | [System Architecture](architecture/) | Complete system design and data flows |
-| [Components](architecture/components) | Gateway, agents, and tool adapters |
-| [Permission Model](architecture/permissions) | Safety and security architecture |
+| [Orchestrator Technical](architecture/orchestrator-technical) | Standards-based orchestrator with digital thread, event-driven workflows, and governance |
+| [MVP Roadmap](architecture/mvp-roadmap) | Phased implementation from MVP to enterprise with technology stack and timelines |
 
 ### Development & API
 
@@ -1112,6 +1112,49 @@ forge approve              # Accept and commit
 **Time Saved**: What would take 6-8 weeks now takes **2-3 weeks** with Phase 1.
 
 [Full Quick Start Guide →](getting-started/)
+
+---
+
+## 📖 Key Terminology
+
+### Gateway vs. Orchestrator
+
+**Gateway Service**: The HTTP/WebSocket API server that provides the interface for CLI and web clients. Handles authentication, request routing, and real-time updates. Think of it as the "front door" to MetaForge.
+
+**Orchestrator**: The coordination and workflow engine that manages specialist agents, enforces policies, maintains the digital thread, and orchestrates cross-disciplinary workflows. This is the "brain" that coordinates all the agents.
+
+**Relationship**: The Gateway Service **contains** the Orchestrator engine. When you see "MetaForge Gateway" in architecture diagrams, it includes both the API layer (Gateway) and the coordination logic (Orchestrator).
+
+**In Practice**:
+- Run the Gateway: `forge gateway` (starts both the API server and orchestrator)
+- The Orchestrator coordinates agents behind the scenes
+- Users interact with the Gateway's API/CLI interface
+
+### Agent Terminology
+
+MetaForge uses **specialist agents** (not god-mode AI). Each agent is an expert in one discipline:
+
+| Abbreviation | Full Name | Alternative Names |
+|--------------|-----------|-------------------|
+| **REQ** | Requirements Agent | Product Spec Agent |
+| **SYS** | Systems Agent | Architecture Agent |
+| **EE** | Electronics Agent | Electronics Engineering Agent |
+| **ME** | Mechanical Agent | Mechanical Engineering Agent |
+| **FW** | Firmware Agent | Embedded Software Agent |
+| **SC** | Supply Chain Agent | Supplier Agent, Procurement Agent |
+| **MFG** | Manufacturing Agent | NPI Agent, Production Agent |
+| **REG** | Regulatory Agent | Compliance Agent, Certification Agent |
+| **SEC** | Cybersecurity Agent | Security Agent |
+| **FIELD** | Field Engineering Agent | Deployment Agent, Service Agent |
+
+**Phase-based Agent Count**:
+- **Phase 1 (v0.1-0.3)**: 6-7 specialist agents covering 6-7 core disciplines (Layer 1 foundation + cost engineering)
+- **Phase 2 (v0.4-0.6)**: 19 specialist agents covering 19 disciplines (completes Layer 1 with Industrial Design & Prototyping, adds Layers 2-3)
+- **Phase 3 (v0.7-1.0)**: 25 specialist agents covering all 25 disciplines (adds Layer 4: regulatory, lifecycle, sustainability)
+
+### Digital Thread
+
+A **graph database** linking all product lifecycle artefacts: requirements → design → BOM → tests → evidence → compliance. Enables queries like "Which requirements are at risk due to component EOL?" and "Trace this field failure back to the original design decision."
 
 ---
 

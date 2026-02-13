@@ -2,6 +2,8 @@
 layout: default
 title: Architecture
 description: Internal technical documentation for MetaForge system architecture and data flows
+nav_order: 5
+has_children: true
 ---
 
 # MetaForge System Architecture
@@ -1080,6 +1082,24 @@ interface Artifact {
   created: Date;
 }
 ```
+
+---
+
+## Related Architecture Documentation
+
+### Advanced Topics
+
+| Document | Description |
+|:---------|:------------|
+| [Orchestrator Technical Architecture](orchestrator-technical) | Standards-based orchestrator design with digital thread, event-driven workflows, and governance (ISO/IEC/IEEE 15288, NIST, ISO 31000) |
+| [MVP Roadmap & Implementation](mvp-roadmap) | Phased implementation plan from MVP ($470K, 3-4 months) to enterprise-grade orchestrator with technology stack and resource requirements |
+
+### Research & Framework
+
+| Document | Description |
+|:---------|:------------|
+| [Hardware Development Framework](../research/hardware-development-layers) | Complete 4-layer, 25-discipline framework mapping to MetaForge orchestrator capabilities |
+| [Framework Quick Reference](../FRAMEWORK_MAPPING) | Quick lookup showing how MetaForge addresses each of 25 disciplines across all 4 layers |
 
 ---
 
